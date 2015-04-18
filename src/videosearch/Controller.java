@@ -16,6 +16,8 @@ import javafx.scene.control.ScrollBar;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
 import java.io.IOException;
@@ -48,7 +50,7 @@ public class Controller extends VBox implements Notifier{
     final int POINTER_END = 735;
     final int POINTER_LEN = POINTER_END - POINTER_START;
     final int POINTER_STARTY = 16;
-    final int POINTER_ENDY = 132;
+    final int POINTER_ENDY = 130;
 
 
     public Controller() throws IOException {
@@ -85,6 +87,8 @@ public class Controller extends VBox implements Notifier{
         chartpointer.setEndY(POINTER_ENDY);
         chartpointer.setStartX(POINTER_START);
         chartpointer.setEndX(POINTER_START);
+        chartpointer.setStrokeWidth(2);
+        chartpointer.setStroke(Color.ORANGE);
         chartpane.getChildren().add(chartpointer);
 
     }
@@ -144,12 +148,11 @@ public class Controller extends VBox implements Notifier{
     private void setMatchVideo() throws IOException {
 
         player_src = new Player(video_src,this);
-        //player_src.load("../databasejpg/flowers/");
-        //player_src.load("../database/flowers/");
 
         paths = new ArrayList<String>();
         for(CategoryResult cate : categoryResults){
-            String path = "../databasejpg/" + cate.getCategory();
+            //String path = "../databasejpg/" + cate.getCategory();
+            String path = "../database/" + cate.getCategory();
             paths.add(path);
             player_src.preload(path);
         }

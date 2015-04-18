@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="dean's commit">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Controller.java" afterPath="$PROJECT_DIR$/src/videosearch/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" afterPath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Main.java" afterPath="$PROJECT_DIR$/src/videosearch/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Style.css" afterPath="$PROJECT_DIR$/src/videosearch/Style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/VideoSearch.fxml" afterPath="$PROJECT_DIR$/src/videosearch/VideoSearch.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -88,19 +85,19 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66">
-              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5988024">
+              <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#setQueryVideo#0;class#Controller#0" expanded="false" />
-                <element signature="e#5418#5934#0" expanded="true" />
-                <element signature="e#5933#5934#0" expanded="true" />
+                <element signature="e#5530#6046#0" expanded="true" />
+                <element signature="e#6045#6046#0" expanded="true" />
                 <element signature="method#playSrc#0;class#Controller#0" expanded="false" />
                 <element signature="method#playClip#0;class#Controller#0" expanded="false" />
                 <element signature="method#stopSrc#0;class#Controller#0" expanded="false" />
                 <element signature="method#stopClip#0;class#Controller#0" expanded="false" />
-                <element signature="e#6799#7160#0" expanded="true" />
-                <element signature="e#7159#7160#0" expanded="true" />
+                <element signature="e#6911#7272#0" expanded="true" />
+                <element signature="e#7271#7272#0" expanded="true" />
                 <element signature="method#notifying#0;class#Controller#0" expanded="false" />
               </folding>
             </state>
@@ -148,7 +145,7 @@
         <entry file="file://$PROJECT_DIR$/src/videosearch/VideoSearch.fxml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
+              <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -232,8 +229,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="352" />
-    <option name="y" value="73" />
+    <option name="x" value="71" />
+    <option name="y" value="26" />
     <option name="width" value="1160" />
     <option name="height" value="738" />
   </component>
@@ -780,7 +777,7 @@
       <workItem from="1429153194779" duration="373000" />
       <workItem from="1429154185317" duration="555000" />
       <workItem from="1429155082418" duration="39743000" />
-      <workItem from="1429234921847" duration="39414000" />
+      <workItem from="1429234921847" duration="39992000" />
     </task>
     <task id="LOCAL-00001" summary="dean's commit">
       <created>1429320987088</created>
@@ -792,7 +789,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84679000" />
+    <option name="totallyTimeSpent" value="85257000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -804,14 +801,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="352" y="73" width="1160" height="738" extended-state="0" />
+    <frame x="71" y="26" width="1160" height="738" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18518518" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25462964" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -825,7 +822,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299909" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20661896" sideWeight="0.6703755" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18518518" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18364197" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19091752" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -1205,21 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1246#1253#0" expanded="true" />
-            <element signature="e#2744#2745#0" expanded="true" />
-            <element signature="e#2774#2775#0" expanded="true" />
-            <element signature="e#2897#3497#0" expanded="true" />
-            <element signature="e#3496#3497#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/CategoryResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1249,14 +1231,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1264,14 +1238,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/VideoSearch.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1283,21 +1249,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1246#1253#0" expanded="true" />
+            <element signature="e#2744#2745#0" expanded="true" />
+            <element signature="e#2774#2775#0" expanded="true" />
+            <element signature="e#2897#3497#0" expanded="true" />
+            <element signature="e#3496#3497#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/VideoSearch.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="57" selection-start-line="32" selection-start-column="57" selection-end-line="32" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66">
-          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5988024">
+          <caret line="153" column="13" selection-start-line="153" selection-start-column="13" selection-end-line="153" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#setQueryVideo#0;class#Controller#0" expanded="false" />
-            <element signature="e#5418#5934#0" expanded="true" />
-            <element signature="e#5933#5934#0" expanded="true" />
+            <element signature="e#5530#6046#0" expanded="true" />
+            <element signature="e#6045#6046#0" expanded="true" />
             <element signature="method#playSrc#0;class#Controller#0" expanded="false" />
             <element signature="method#playClip#0;class#Controller#0" expanded="false" />
             <element signature="method#stopSrc#0;class#Controller#0" expanded="false" />
             <element signature="method#stopClip#0;class#Controller#0" expanded="false" />
-            <element signature="e#6799#7160#0" expanded="true" />
-            <element signature="e#7159#7160#0" expanded="true" />
+            <element signature="e#6911#7272#0" expanded="true" />
+            <element signature="e#7271#7272#0" expanded="true" />
             <element signature="method#notifying#0;class#Controller#0" expanded="false" />
           </folding>
         </state>

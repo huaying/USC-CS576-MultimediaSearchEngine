@@ -30,7 +30,7 @@
                 <ImageView fx:id="video_clip" disable="false" pickOnBounds="true" preserveRatio="true" styleClass="image_view" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <HBox alignment="CENTER">
                <children>
-                  <Label fx:id="match_label" text="Match" />
+                  <Label fx:id="match_label" text="Match:" />
                       <ComboBox fx:id="matchbox" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
                </children>
             </HBox>
