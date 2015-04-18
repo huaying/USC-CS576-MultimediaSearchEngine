@@ -1,0 +1,10 @@
+
+.root {
+    -fx-background-color: #ebebeb;
+}
+.button {
+    -fx-font: 12px monospace;
+}
+.combo-box .cell{
+    -fx-font: 15px monospace;
+}

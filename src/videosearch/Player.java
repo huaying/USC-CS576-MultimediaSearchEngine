@@ -9,10 +9,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
-import java.awt.image.BufferedImage;
-import java.io.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by huayingt on 4/16/15.
@@ -23,6 +26,7 @@ public class Player{
     private int cur_frame_id;
     private int num_frame;
     protected List<Image> frames;
+    protected Map<String,List> movies;
     protected ImageView imageView;
     protected Timeline timer;
     protected boolean playing;
@@ -34,25 +38,41 @@ public class Player{
         this.imageView = imageView;
         this.notifier = notifier;
 
+
         that = this;
         playing = false;
         num_frame = 0;
+
+        movies = new HashMap<String, List>();
     }
 
+    protected  void preload(String path) throws IOException{
 
-    protected void load(String path){
-
-        this.path = path;
         File dir = new File(path);
-        frames = new ArrayList<Image>();
+        List<Image>frames = new ArrayList<Image>();
 
         for (File file : dir.listFiles()) {
-            if (file.getName().endsWith(".rgb")) {
-                frames.add(SwingFXUtils.toFXImage(this.getRGBImage(
+            String filename = file.getName();
+            if (filename.endsWith(".rgb")) {
+                frames.add(SwingFXUtils.toFXImage(RGBtoJPG.getRGBImage(
                         file.getPath()
                 ),null));
+                Debug.print("load: " + filename);
+
+            }else if(filename.endsWith(".jpg")){
+                frames.add(SwingFXUtils.toFXImage(ImageIO.read(file),null));
+                Debug.print("load: " + filename);
             }
         }
+        movies.put(path,frames);
+
+    }
+
+    protected void load(String path) throws IOException {
+
+        this.path = path;
+        if(!movies.containsKey(path)) preload(path);
+        frames = movies.get(path);
         num_frame = frames.size();
         resetTimer();
         preview();
@@ -86,6 +106,7 @@ public class Player{
     protected void stop(){
         playing = false;
         timer.stop();
+        this.preview();
         resetTimer();
     }
 
@@ -105,7 +126,9 @@ public class Player{
                 if (cur_frame_id < num_frame) {
                     imageView.setImage(frames.get(cur_frame_id));
                     cur_frame_id++;
-                    notifier.notifying(String.valueOf(cur_frame_id));
+                    if(imageView.getId().equals("video_src")){
+                        notifier.notifying(String.valueOf(cur_frame_id));
+                    }
                 } else {
                     notifier.notifying(imageView.getId());
                 }
@@ -115,43 +138,4 @@ public class Player{
 
     }
 
-    private BufferedImage getRGBImage(String path) {
-
-        int width = 352;
-        int height = 288;
-
-        BufferedImage img = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-
-        try {
-
-            File file = new File(path);
-            InputStream is = new FileInputStream(file);
-
-            long len = file.length();
-            byte[] bytes = new byte[(int) len];
-
-            int offset = 0;
-            int numRead;
-            while (offset < bytes.length && (numRead = is.read(bytes, offset, bytes.length - offset)) >= 0) {
-                offset += numRead;
-            }
-            int ind = 0;
-            for (int y = 0; y < height; y++) {
-                for (int x = 0; x < width; x++) {
-                    byte r = bytes[ind];
-                    byte g = bytes[ind+height*width];
-                    byte b = bytes[ind+height*width*2];
-                    int pix = 0xff000000 | ((r & 0xff) << 16) | ((g & 0xff) << 8) | (b & 0xff);
-                    img.setRGB(x, y, pix);
-                    ind++;
-                }
-            }
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return img;
-    }
 }

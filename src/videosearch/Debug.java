@@ -5,7 +5,7 @@ package videosearch;
  */
 public class Debug {
     static public boolean debug = true;
-    static public void print(String s){
+    static public void print(Object s){
         if(debug) {
             System.out.println(s);
         }
@@ -19,6 +19,11 @@ public class Debug {
                     System.out.print(s[i] + ", ");
                 }
             }
+        }
+    }
+    static public void print(CategoryResult c){
+        if(debug){
+            System.out.print(c.getCategory()+", "+c.getSimilarity()+"\n");
         }
     }
 }
