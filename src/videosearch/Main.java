@@ -17,8 +17,10 @@ public class Main extends Application {
         Controller controller = new Controller();
         primaryStage.setTitle("VideoSearch");
 
-        primaryStage.setScene(new Scene(controller, 820, 500));
+        primaryStage.setScene(new Scene(controller, 820, 600));
+        primaryStage.setResizable(false);
         primaryStage.show();
+
 
     }
 

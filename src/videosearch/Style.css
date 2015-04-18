@@ -5,6 +5,11 @@
 .button {
     -fx-font: 12px monospace;
 }
+.label {
+    -fx-font: 15px monospace;
+    -fx-padding: 10;
+
+}
 .combo-box .cell{
     -fx-font: 15px monospace;
 }

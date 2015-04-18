@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="dean's commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/Controller$2.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/artifacts/JavaFXApp/Icon&#13;" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/Icon&#13;" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/Icon&#13;" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/RGBtoJPG.class" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/Style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Controller.java" afterPath="$PROJECT_DIR$/src/videosearch/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" afterPath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Main.java" afterPath="$PROJECT_DIR$/src/videosearch/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Style.css" afterPath="$PROJECT_DIR$/src/videosearch/Style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/VideoSearch.fxml" afterPath="$PROJECT_DIR$/src/videosearch/VideoSearch.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
@@ -76,17 +73,56 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/videosearch/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
               <folding>
-                <element signature="e#2936#3380#0" expanded="true" />
-                <element signature="e#3379#3380#0" expanded="true" />
-                <element signature="e#4245#4546#0" expanded="true" />
-                <element signature="e#4545#4546#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.66">
+              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#setQueryVideo#0;class#Controller#0" expanded="false" />
+                <element signature="e#5418#5934#0" expanded="true" />
+                <element signature="e#5933#5934#0" expanded="true" />
+                <element signature="method#playSrc#0;class#Controller#0" expanded="false" />
+                <element signature="method#playClip#0;class#Controller#0" expanded="false" />
+                <element signature="method#stopSrc#0;class#Controller#0" expanded="false" />
+                <element signature="method#stopClip#0;class#Controller#0" expanded="false" />
+                <element signature="e#6799#7160#0" expanded="true" />
+                <element signature="e#7159#7160#0" expanded="true" />
+                <element signature="method#notifying#0;class#Controller#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Debug.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/videosearch/Debug.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryResult.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/videosearch/CategoryResult.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,8 +131,9 @@
         <entry file="file://$PROJECT_DIR$/src/videosearch/Player.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding>
+                <element signature="imports" expanded="true" />
                 <element signature="e#1246#1253#0" expanded="true" />
                 <element signature="e#2744#2745#0" expanded="true" />
                 <element signature="e#2774#2775#0" expanded="true" />
@@ -107,11 +144,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VideoSearch.fxml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VideoSearch.fxml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/videosearch/VideoSearch.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6792453">
-              <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -121,17 +158,7 @@
         <entry file="file://$PROJECT_DIR$/src/videosearch/Style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Constant.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
+              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,16 +200,16 @@
         <option value="$PROJECT_DIR$/src/CategoryResult.java" />
         <option value="$PROJECT_DIR$/src/videosearch/CategoryResult.java" />
         <option value="$PROJECT_DIR$/src/videosearch/FinalPJOnline.java" />
-        <option value="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
         <option value="$PROJECT_DIR$/src/videosearch/Debug.java" />
         <option value="$PROJECT_DIR$/src/videosearch/Test.java" />
-        <option value="$PROJECT_DIR$/src/videosearch/Style.css" />
-        <option value="$PROJECT_DIR$/src/videosearch/Main.java" />
         <option value="$PROJECT_DIR$/src/videosearch/Constant.java" />
         <option value="$PROJECT_DIR$/src/videosearch/RGBtoJPG.java" />
-        <option value="$PROJECT_DIR$/src/videosearch/Controller.java" />
         <option value="$PROJECT_DIR$/src/videosearch/Player.java" />
+        <option value="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
+        <option value="$PROJECT_DIR$/src/videosearch/Style.css" />
+        <option value="$PROJECT_DIR$/src/videosearch/Main.java" />
         <option value="$PROJECT_DIR$/src/videosearch/VideoSearch.fxml" />
+        <option value="$PROJECT_DIR$/src/videosearch/Controller.java" />
       </list>
     </option>
   </component>
@@ -197,14 +224,17 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
+  </component>
   <component name="NamedScopeManager">
     <order />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-51" />
-    <option name="y" value="23" />
-    <option name="width" value="1139" />
+    <option name="x" value="352" />
+    <option name="y" value="73" />
+    <option name="width" value="1160" />
     <option name="height" value="738" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -750,7 +780,7 @@
       <workItem from="1429153194779" duration="373000" />
       <workItem from="1429154185317" duration="555000" />
       <workItem from="1429155082418" duration="39743000" />
-      <workItem from="1429234921847" duration="22140000" />
+      <workItem from="1429234921847" duration="39414000" />
     </task>
     <task id="LOCAL-00001" summary="dean's commit">
       <created>1429320987088</created>
@@ -762,30 +792,40 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="67405000" />
+    <option name="totallyTimeSpent" value="84679000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-51" y="23" width="1139" height="738" extended-state="0" />
-    <editor active="false" />
+    <frame x="352" y="73" width="1160" height="738" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.5478395" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18518518" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3271605" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299909" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2105743" sideWeight="0.6703755" order="1" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.30709878" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20661896" sideWeight="0.6703755" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18518518" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19091752" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
@@ -793,7 +833,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32924962" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -860,8 +899,6 @@
           <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -930,18 +967,18 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="29" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
           <folding>
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..CATEGORYRESULT..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT WINDO..WINDOWRESULT..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..CATEGORYRESULT..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT WINDO..WINDOWRESULT..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
           </folding>
         </state>
       </provider>
@@ -952,8 +989,6 @@
           <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -980,8 +1015,6 @@
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1008,8 +1041,6 @@
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1036,8 +1067,6 @@
           <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1133,30 +1162,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="40" selection-start-line="17" selection-start-column="40" selection-end-line="17" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#522#523#0" expanded="true" />
-            <element signature="e#550#551#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/FinalPJOnline.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="48" column="80" selection-start-line="48" selection-start-column="80" selection-end-line="48" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Debug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.83113456">
-          <caret line="21" column="8" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1166,27 +1175,6 @@
         <state vertical-scroll-proportion="0.04464286">
           <caret line="14" column="41" selection-start-line="14" selection-start-column="41" selection-end-line="14" selection-end-column="41" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/DbProcessor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.26190478">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding>
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..CATEGORYRESULT..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT WINDO..WINDOWRESULT..." />
-            <marker date="1429231438000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1201,10 +1189,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/CategoryResult.java">
+    <entry file="file://$PROJECT_DIR$/src/videosearch/ImageUtils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1724138">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.3871734">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.21">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1212,8 +1208,9 @@
     <entry file="file://$PROJECT_DIR$/src/videosearch/Player.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <caret line="60" column="0" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
           <folding>
+            <element signature="imports" expanded="true" />
             <element signature="e#1246#1253#0" expanded="true" />
             <element signature="e#2744#2745#0" expanded="true" />
             <element signature="e#2774#2775#0" expanded="true" />
@@ -1223,15 +1220,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/videosearch/CategoryResult.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/DbProcessor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.65">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
           <folding>
-            <element signature="e#2936#3380#0" expanded="true" />
-            <element signature="e#3379#3380#0" expanded="true" />
-            <element signature="e#4245#4546#0" expanded="true" />
-            <element signature="e#4545#4546#0" expanded="true" />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="CREATE TABLE..IF..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="DELETE FROM ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..CATEGORYRESULT..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT WINDO..WINDOWRESULT..." />
+            <marker date="1429326065000" expanded="true" signature="-1:-1" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
           </folding>
         </state>
       </provider>
@@ -1239,24 +1252,54 @@
     <entry file="file://$PROJECT_DIR$/src/videosearch/Style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
-          <folding />
+          <caret line="19" column="58" selection-start-line="19" selection-start-column="58" selection-end-line="19" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/VideoSearch.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6792453">
-          <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="71" column="19" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Debug.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#setQueryVideo#0;class#Controller#0" expanded="false" />
+            <element signature="e#5418#5934#0" expanded="true" />
+            <element signature="e#5933#5934#0" expanded="true" />
+            <element signature="method#playSrc#0;class#Controller#0" expanded="false" />
+            <element signature="method#playClip#0;class#Controller#0" expanded="false" />
+            <element signature="method#stopSrc#0;class#Controller#0" expanded="false" />
+            <element signature="method#stopClip#0;class#Controller#0" expanded="false" />
+            <element signature="e#6799#7160#0" expanded="true" />
+            <element signature="e#7159#7160#0" expanded="true" />
+            <element signature="method#notifying#0;class#Controller#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

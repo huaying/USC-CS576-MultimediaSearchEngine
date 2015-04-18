@@ -107,7 +107,7 @@ public class DbProcessor {
     public Map<Integer, Double> getWindowResult(String category){
         Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
         try {
-            String getWindowResultSql = "SELECT WINDOWINDEX SIMILARITY FROM WINDOWRESULT WHERE CATEGORY='"+category+"'";
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULT WHERE CATEGORY='"+category+"'";
             ResultSet rs = stmt.executeQuery(getWindowResultSql);
             while(rs.next()){
                 int index = rs.getInt("WINDOWINDEX");

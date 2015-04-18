@@ -28,8 +28,13 @@
             <children>
                 <ImageView fx:id="video_src" disable="false" pickOnBounds="true" preserveRatio="true" styleClass="image_view" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                 <ImageView fx:id="video_clip" disable="false" pickOnBounds="true" preserveRatio="true" styleClass="image_view" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                <ComboBox fx:id="matchbox" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-                <Label GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+            <HBox alignment="CENTER">
+               <children>
+                  <Label fx:id="match_label" text="Match" />
+                      <ComboBox fx:id="matchbox" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
+               </children>
+            </HBox>
+                <Label fx:id="query_label" alignment="CENTER" text="Query" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                 <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <children>
                         <Button fx:id="play_src" mnemonicParsing="false" onAction="#playSrc" text="Play">
@@ -57,22 +62,27 @@
                             </HBox.margin>
                         </Button>
                     </children>
-                    <opaqueInsets>
-                        <Insets />
-                    </opaqueInsets>
                 </HBox>
             </children>
 
         </GridPane>
-      <LineChart maxHeight="100.0" maxWidth="750.0" minHeight="100.0" minWidth="750.0" prefHeight="100.0" prefWidth="750.0">
-        <xAxis>
-          <CategoryAxis side="BOTTOM" />
-        </xAxis>
-        <yAxis>
-          <NumberAxis side="LEFT" />
-        </yAxis>
-      </LineChart>
-      <ScrollBar fx:id="scrollbar" />
+        <ScrollBar fx:id="scrollbar" prefHeight="17.0">
+         <padding>
+            <Insets left="36.0" right="37.0" />
+         </padding>
+      </ScrollBar>
+      <Pane fx:id="chartpane" maxWidth="800.0" minWidth="800.0" prefHeight="200.0" prefWidth="800.0">
+         <children>
+            <AreaChart fx:id="areachart" maxHeight="200.0" maxWidth="750.0" minHeight="200.0" minWidth="750.0" prefHeight="200.0" prefWidth="750.0">
+              <xAxis>
+                <NumberAxis autoRanging="false" label="frame" prefHeight="55.0" side="BOTTOM" tickUnit="25" upperBound="450" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis autoRanging="false" label="similarity" prefWidth="65.0" side="LEFT" tickUnit="20" upperBound="100" />
+              </yAxis>
+            </AreaChart>
+         </children>
+      </Pane>
     </children>
 
 
