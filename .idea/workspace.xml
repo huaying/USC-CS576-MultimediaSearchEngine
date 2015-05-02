@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="dean's commit">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/videosearch/SurfExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/Constant.class" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/Constant.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/DbProcessor.class" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/DbProcessor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/FinalPJOffline.class" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/FinalPJOffline.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/FinalPJOnline.class" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/FinalPJOnline.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/TextFeatureExtractor.class" afterPath="$PROJECT_DIR$/out/production/ViedoSearch/videosearch/TextFeatureExtractor.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/Constant.java" afterPath="$PROJECT_DIR$/src/videosearch/Constant.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" afterPath="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/FinalPJOffline.java" afterPath="$PROJECT_DIR$/src/videosearch/FinalPJOffline.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/FinalPJOnline.java" afterPath="$PROJECT_DIR$/src/videosearch/FinalPJOnline.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/TextFeature.java" afterPath="$PROJECT_DIR$/src/videosearch/TextFeature.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/videosearch/TextFeatureExtractor.java" afterPath="$PROJECT_DIR$/src/videosearch/TextFeatureExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ViedoSearch.iml" afterPath="$PROJECT_DIR$/ViedoSearch.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,7 +73,7 @@
         <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+              <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -94,22 +82,23 @@
       <file leaf-file-name="DbProcessor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/videosearch/DbProcessor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1171875">
-              <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+            <state vertical-scroll-proportion="0.703125">
+              <caret line="31" column="98" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
               <folding>
-                <marker date="1430523604000" expanded="true" signature="705:868" placeholder="CREATE TABLE..IF..." />
-                <marker date="1430523604000" expanded="true" signature="961:985" placeholder="DELETE FROM ..." />
-                <marker date="1430523604000" expanded="true" signature="1079:1103" placeholder="ALTER TABLE TEXTFEATURE_missingValue..." />
-                <marker date="1430523604000" expanded="true" signature="1413:1520" placeholder="CREATE TABLE..IF..." />
-                <marker date="1430523604000" expanded="true" signature="1614:1638" placeholder="DELETE FROM ..." />
-                <marker date="1430523604000" expanded="true" signature="1769:1852" placeholder="CREATE TABLE..IF..." />
-                <marker date="1430523604000" expanded="true" signature="1942:1968" placeholder="DELETE FROM ..." />
-                <marker date="1430523604000" expanded="true" signature="2249:2363" placeholder="INSERT INTO ..." />
-                <marker date="1430523604000" expanded="true" signature="2633:2719" placeholder="INSERT INTO ..." />
-                <marker date="1430523604000" expanded="true" signature="3047:3128" placeholder="INSERT INTO ..." />
-                <marker date="1430523604000" expanded="true" signature="3478:3506" placeholder="SELECT * FRO..CATEGORYRESULT..." />
-                <marker date="1430523604000" expanded="true" signature="4160:4238" placeholder="SELECT WINDO..WINDOWRESULT..." />
-                <marker date="1430523604000" expanded="true" signature="4814:4840" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
+                <marker date="1430591953000" expanded="true" signature="698:731" placeholder="DROP TABLE I..." />
+                <marker date="1430591953000" expanded="true" signature="838:1001" placeholder="CREATE TABLE..IF..." />
+                <marker date="1430591953000" expanded="true" signature="1094:1118" placeholder="DELETE FROM ..." />
+                <marker date="1430591953000" expanded="true" signature="1212:1236" placeholder="ALTER TABLE TEXTFEATURE_missingValue..." />
+                <marker date="1430591953000" expanded="true" signature="1546:1653" placeholder="CREATE TABLE..IF..." />
+                <marker date="1430591953000" expanded="true" signature="1747:1771" placeholder="DELETE FROM ..." />
+                <marker date="1430591953000" expanded="true" signature="1902:1985" placeholder="CREATE TABLE..IF..." />
+                <marker date="1430591953000" expanded="true" signature="2075:2101" placeholder="DELETE FROM ..." />
+                <marker date="1430591953000" expanded="true" signature="2382:2496" placeholder="INSERT INTO ..." />
+                <marker date="1430591953000" expanded="true" signature="2766:2852" placeholder="INSERT INTO ..." />
+                <marker date="1430591953000" expanded="true" signature="3180:3261" placeholder="INSERT INTO ..." />
+                <marker date="1430591953000" expanded="true" signature="3611:3639" placeholder="SELECT * FRO..CATEGORYRESULT..." />
+                <marker date="1430591953000" expanded="true" signature="4293:4371" placeholder="SELECT WINDO..WINDOWRESULT..." />
+                <marker date="1430591953000" expanded="true" signature="4947:4973" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
               </folding>
             </state>
           </provider>
@@ -119,7 +108,7 @@
         <entry file="file://$PROJECT_DIR$/src/videosearch/FinalPJOffline.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+              <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -170,11 +159,11 @@
         <option value="$PROJECT_DIR$/src/videosearch/Controller.java" />
         <option value="$PROJECT_DIR$/src/videosearch/SurfExtractor.java" />
         <option value="$PROJECT_DIR$/src/videosearch/TextFeature.java" />
-        <option value="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
         <option value="$PROJECT_DIR$/src/videosearch/TextFeatureExtractor.java" />
         <option value="$PROJECT_DIR$/src/videosearch/FinalPJOnline.java" />
         <option value="$PROJECT_DIR$/src/videosearch/FinalPJOffline.java" />
         <option value="$PROJECT_DIR$/src/videosearch/Constant.java" />
+        <option value="$PROJECT_DIR$/src/videosearch/DbProcessor.java" />
       </list>
     </option>
   </component>
@@ -357,7 +346,7 @@
       <recent name="$PROJECT_DIR$/database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.FinalPJOffline">
     <configuration default="false" name="FinalPJOffline" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -715,8 +704,8 @@
     </list>
     <recent_temporary>
       <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.FinalPJOnline" />
-        <item index="1" class="java.lang.String" itemvalue="Application.FinalPJOffline" />
+        <item index="0" class="java.lang.String" itemvalue="Application.FinalPJOffline" />
+        <item index="1" class="java.lang.String" itemvalue="Application.FinalPJOnline" />
         <item index="2" class="java.lang.String" itemvalue="Application.RGBtoJPG" />
         <item index="3" class="java.lang.String" itemvalue="Application.Test" />
       </list>
@@ -742,7 +731,7 @@
       <workItem from="1429154185317" duration="555000" />
       <workItem from="1429155082418" duration="39743000" />
       <workItem from="1429234921847" duration="39992000" />
-      <workItem from="1430518614431" duration="10137000" />
+      <workItem from="1430518614431" duration="12352000" />
     </task>
     <task id="LOCAL-00001" summary="dean's commit">
       <created>1429320987088</created>
@@ -754,7 +743,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95394000" />
+    <option name="totallyTimeSpent" value="97609000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -767,7 +756,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="71" y="26" width="1247" height="767" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -785,7 +774,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299909" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19170125" sideWeight="0.6703755" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19170125" sideWeight="0.6703755" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17050691" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -1274,40 +1263,41 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/FinalPJOffline.java">
+    <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/videosearch/Constant.java">
+    <entry file="file://$PROJECT_DIR$/src/videosearch/FinalPJOffline.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="48" selection-start-line="14" selection-start-column="48" selection-end-line="14" selection-end-column="48" />
+          <caret line="57" column="28" selection-start-line="57" selection-start-column="28" selection-end-line="57" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/videosearch/DbProcessor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1171875">
-          <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.703125">
+          <caret line="31" column="98" selection-start-line="31" selection-start-column="98" selection-end-line="31" selection-end-column="98" />
           <folding>
-            <marker date="1430523604000" expanded="true" signature="705:868" placeholder="CREATE TABLE..IF..." />
-            <marker date="1430523604000" expanded="true" signature="961:985" placeholder="DELETE FROM ..." />
-            <marker date="1430523604000" expanded="true" signature="1079:1103" placeholder="ALTER TABLE TEXTFEATURE_missingValue..." />
-            <marker date="1430523604000" expanded="true" signature="1413:1520" placeholder="CREATE TABLE..IF..." />
-            <marker date="1430523604000" expanded="true" signature="1614:1638" placeholder="DELETE FROM ..." />
-            <marker date="1430523604000" expanded="true" signature="1769:1852" placeholder="CREATE TABLE..IF..." />
-            <marker date="1430523604000" expanded="true" signature="1942:1968" placeholder="DELETE FROM ..." />
-            <marker date="1430523604000" expanded="true" signature="2249:2363" placeholder="INSERT INTO ..." />
-            <marker date="1430523604000" expanded="true" signature="2633:2719" placeholder="INSERT INTO ..." />
-            <marker date="1430523604000" expanded="true" signature="3047:3128" placeholder="INSERT INTO ..." />
-            <marker date="1430523604000" expanded="true" signature="3478:3506" placeholder="SELECT * FRO..CATEGORYRESULT..." />
-            <marker date="1430523604000" expanded="true" signature="4160:4238" placeholder="SELECT WINDO..WINDOWRESULT..." />
-            <marker date="1430523604000" expanded="true" signature="4814:4840" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
+            <marker date="1430591953000" expanded="true" signature="698:731" placeholder="DROP TABLE I..." />
+            <marker date="1430591953000" expanded="true" signature="838:1001" placeholder="CREATE TABLE..IF..." />
+            <marker date="1430591953000" expanded="true" signature="1094:1118" placeholder="DELETE FROM ..." />
+            <marker date="1430591953000" expanded="true" signature="1212:1236" placeholder="ALTER TABLE TEXTFEATURE_missingValue..." />
+            <marker date="1430591953000" expanded="true" signature="1546:1653" placeholder="CREATE TABLE..IF..." />
+            <marker date="1430591953000" expanded="true" signature="1747:1771" placeholder="DELETE FROM ..." />
+            <marker date="1430591953000" expanded="true" signature="1902:1985" placeholder="CREATE TABLE..IF..." />
+            <marker date="1430591953000" expanded="true" signature="2075:2101" placeholder="DELETE FROM ..." />
+            <marker date="1430591953000" expanded="true" signature="2382:2496" placeholder="INSERT INTO ..." />
+            <marker date="1430591953000" expanded="true" signature="2766:2852" placeholder="INSERT INTO ..." />
+            <marker date="1430591953000" expanded="true" signature="3180:3261" placeholder="INSERT INTO ..." />
+            <marker date="1430591953000" expanded="true" signature="3611:3639" placeholder="SELECT * FRO..CATEGORYRESULT..." />
+            <marker date="1430591953000" expanded="true" signature="4293:4371" placeholder="SELECT WINDO..WINDOWRESULT..." />
+            <marker date="1430591953000" expanded="true" signature="4947:4973" placeholder="SELECT * FRO..TEXTFEATURE_missingValue..." />
           </folding>
         </state>
       </provider>

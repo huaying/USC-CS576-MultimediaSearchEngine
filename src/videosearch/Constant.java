@@ -12,7 +12,7 @@ public class Constant {
     static final int WIDTH = 352;
     static final int HEIGHT = 288;
     static final String JDBC_DRIVER = "org.h2.Driver";
-    static final String DB_URL = "jdbc:h2:~/test";
+    static final String DB_URL = "jdbc:h2:~/final";
     static final String USER = "sa";
     static final String PASS = "";
 }

@@ -27,6 +27,8 @@ public class DbProcessor {
 
     public void offlineTableInitialize(String category){
         try {
+            String deleteTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
+            stmt.executeUpdate(deleteTableSql);
             String buildTextFeatureTable = "CREATE TABLE IF NOT EXISTS TEXTFEATURE_"+category+"" +
                     "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE, SURF INT)";
             stmt.executeUpdate(buildTextFeatureTable);
