@@ -30,10 +30,13 @@ public class FinalPJOnline {
             BufferedImage img = offline.converter(imagePath);
             TextFeatureExtractor textFeatureExtractor = new TextFeatureExtractor();
             double[] histogram = textFeatureExtractor.extract(img);
+            SurfExtractor surfExtractor = new SurfExtractor();
+            int surf = surfExtractor.execute(ImageUtils.scaleImage(img, Constant.SCALE_INDEX));
             TextFeature textFeature = new TextFeature();
             textFeature.setImageName(imagename);
             textFeature.setH1(histogram[0]);
             textFeature.setH2(histogram[1]);
+            textFeature.setSurf(surf);
             queryTextFeatureList.add(textFeature);
         }
 
@@ -45,7 +48,7 @@ public class FinalPJOnline {
     public static void compare(List<TextFeature> queryTextFeatureList){
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
-        dbProcessor.onlineTabelInitialize();
+        dbProcessor.onlineTableInitialize();
         List<CategoryResult> categoryResultList = new ArrayList<CategoryResult>();
         //loof for category
         for(int k=0; k<Constant.CATEGORY.length; k++) {
@@ -59,16 +62,21 @@ public class FinalPJOnline {
                 for (int j = 0; j < queryTextFeatureList.size(); j++) {
                     double dbH1 = dbTextFeatureList.get(j + i).getH1();
                     double dbH2 = dbTextFeatureList.get(j + i).getH2();
+                    int dbSurf = dbTextFeatureList.get(j + i).getSurf();
                     double queryH1 = queryTextFeatureList.get(j).getH1();
                     double queryH2 = queryTextFeatureList.get(j).getH2();
+                    int querySurf = queryTextFeatureList.get(j).getSurf();
 
                     double diffH1 = Math.abs(queryH1 - dbH1);
                     double diffH2 = Math.abs(queryH2 - dbH2);
+                    int diffSurf = Math.abs(querySurf - dbSurf);
 
                     if (dbH1 == 0.0)
                         dbH1 = 1.0;
                     if (dbH2 == 0.0)
                         dbH2 = 1.0;
+                    if (dbSurf == 0)
+                        dbSurf = 1;
 
                     double errorH1 = diffH1 / dbH1;
                     if (errorH1 > 1.0)
@@ -76,8 +84,11 @@ public class FinalPJOnline {
                     double errorH2 = diffH2 / dbH2;
                     if (errorH2 > 1.0)
                         errorH2 = 1.0;
+                    double errorSurf = (float)diffSurf/(float)dbSurf;
+                    if (errorSurf > 1.0)
+                        errorSurf = 1.0;
 
-                    double frameSimilarity = ((1 - errorH1) + (1 - errorH2)) / 2;
+                    double frameSimilarity = ((1 - errorH1) + (1 - errorH2) + (1 - errorSurf)) / 3;
                     windowSimilarity += frameSimilarity;
                 }
                 windowSimilarity = windowSimilarity / queryTextFeatureList.size();

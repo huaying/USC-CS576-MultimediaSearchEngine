@@ -28,16 +28,18 @@ public class DbProcessor {
     public void offlineTableInitialize(String category){
         try {
             String buildTextFeatureTable = "CREATE TABLE IF NOT EXISTS TEXTFEATURE_"+category+"" +
-                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE)";
+                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE, SURF INT)";
             stmt.executeUpdate(buildTextFeatureTable);
             String clearDataSql = "DELETE FROM TEXTFEATURE_"+category+"";
             stmt.executeUpdate(clearDataSql);
+            String resetIdSql = "ALTER TABLE TEXTFEATURE_"+category+" ALTER COLUMN ID RESTART WITH 1";
+            stmt.executeUpdate(resetIdSql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    public void onlineTabelInitialize(){
+    public void onlineTableInitialize(){
         try {
             //create windowresult table
             String buildWindowResult = "CREATE TABLE IF NOT EXISTS WINDOWRESULT(WINDOWINDEX VARCHAR(255), CATEGORY VARCHAR(255), SIMILARITY DOUBLE)";
@@ -57,10 +59,10 @@ public class DbProcessor {
 
     }
 
-    public void storeTextFeature(String imagename, String category, double[] histogram)  {
+    public void storeTextFeature(String imagename, String category, double[] histogram, int surf)  {
 
         try {
-            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+histogram[0]+", "+histogram[1]+")";
+            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+histogram[0]+", "+histogram[1]+", "+surf+")";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -130,6 +132,7 @@ public class DbProcessor {
                 tf.setImageName(rs.getString("INDEX"));
                 tf.setH1(rs.getDouble("H1"));
                 tf.setH2(rs.getDouble("H2"));
+                tf.setSurf(rs.getInt("SURF"));
                 textFeatureList.add(tf);
             }
         } catch (SQLException e) {

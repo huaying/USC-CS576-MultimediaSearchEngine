@@ -17,7 +17,6 @@ public class TextFeatureExtractor {
 
     public double[] extract(BufferedImage image) {
         histogram = new double[2];
-        double[] directionality;
         ColorConvertOp op = new ColorConvertOp(image.getColorModel().getColorSpace(),
                 ColorSpace.getInstance(ColorSpace.CS_GRAY),
                 new RenderingHints(RenderingHints.KEY_COLOR_RENDERING, RenderingHints.VALUE_COLOR_RENDER_QUALITY));

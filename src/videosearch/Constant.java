@@ -4,9 +4,10 @@ package videosearch;
  * Created by zjjcxt on 4/13/15.
  */
 public class Constant {
+    static final int SCALE_INDEX = 256;
     static final String IMAGE_EXTENTSION = ".rgb";
     static final String DB_DIR_PATH = "../database/";
-    static final String[] CATEGORY = {"musicvideo", "movie", "traffic"};
+    static final String[] CATEGORY = {"interview", "musicvideo"};
     static final String Query_DIR_PATH = "../query/first/";
     static final int WIDTH = 352;
     static final int HEIGHT = 288;

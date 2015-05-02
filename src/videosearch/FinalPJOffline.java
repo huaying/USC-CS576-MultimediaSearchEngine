@@ -37,13 +37,12 @@ public class FinalPJOffline {
                 //tamura feature
                 TextFeatureExtractor textFeatureExtractor = new TextFeatureExtractor();
                 double[] histogram = textFeatureExtractor.extract(img);
-                dbProcessor.storeTextFeature(imagename, Constant.CATEGORY[k], histogram);
-
+                SurfExtractor surfExtractor = new SurfExtractor();
+                int surf = surfExtractor.execute(ImageUtils.scaleImage(img, Constant.SCALE_INDEX));
+                dbProcessor.storeTextFeature(imagename, Constant.CATEGORY[k], histogram, surf);
             }
         }
-
         dbProcessor.closeConnection();
-
 
     }
 

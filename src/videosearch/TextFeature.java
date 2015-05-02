@@ -9,6 +9,7 @@ public class TextFeature {
     private String imageName;
     private double h1;
     private double h2;
+    private int surf;
 
     public String getImageName() {
         return imageName;
@@ -34,12 +35,21 @@ public class TextFeature {
         this.h2 = h2;
     }
 
+    public int getSurf() {
+        return surf;
+    }
+
+    public void setSurf(int surf) {
+        this.surf = surf;
+    }
+
     public TextFeature() {
     }
 
-    public TextFeature(String imageName, double h1, double h2) {
+    public TextFeature(String imageName, double h1, double h2, int surf) {
         this.imageName = imageName;
         this.h1 = h1;
         this.h2 = h2;
+        this.surf = surf;
     }
 }
