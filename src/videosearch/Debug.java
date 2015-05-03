@@ -44,9 +44,20 @@ public class Debug {
     }
     static public void main(String argv[]){
         //ArrayList<BufferedImage> b = RGB.getRGBVideo("../database/flowers/flowers.video");
-        int t;
-        if ((t = 3 + 1) > 3){
-            Debug.print(t);
+        ArrayList<Integer> a = new ArrayList<Integer>();
+        ArrayList<ArrayList> b = new ArrayList<ArrayList>();
+        a.add(1);
+        a.add(2);
+        b.add(a);
+        a = new ArrayList<Integer>();
+        a.add(3);
+        a.add(4);
+        b.add(a);
+        for (ArrayList<Integer> aa : b) {
+            for (int aaa : aa) {
+                Debug.print(aaa);
+            }
         }
+
     }
 }
