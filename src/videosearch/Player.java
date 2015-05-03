@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,19 +51,30 @@ public class Player{
 
         File dir = new File(path);
         List<Image>frames = new ArrayList<Image>();
+        ArrayList<BufferedImage> imgs;
 
         for (File file : dir.listFiles()) {
             String filename = file.getName();
+            if (filename.endsWith(".video")) {
+                imgs = RGB.getRGBVideo(file.getPath());
+                for(BufferedImage img : imgs) {
+                    frames.add(SwingFXUtils.toFXImage(img, null));
+                }
+                Debug.print("load: " + filename);
+                break;
+            }
+
             if (filename.endsWith(".rgb")) {
-                frames.add(SwingFXUtils.toFXImage(RGBtoJPG.getRGBImage(
+                frames.add(SwingFXUtils.toFXImage(RGB.getRGBImage(
                         file.getPath()
                 ),null));
-                Debug.print("load: " + filename);
+                //Debug.print("load: " + filename);
 
             }else if(filename.endsWith(".jpg")){
                 frames.add(SwingFXUtils.toFXImage(ImageIO.read(file),null));
-                Debug.print("load: " + filename);
+                //Debug.print("load: " + filename);
             }
+
         }
         movies.put(path,frames);
 
