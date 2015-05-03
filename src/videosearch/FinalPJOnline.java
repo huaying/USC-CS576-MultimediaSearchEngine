@@ -15,9 +15,13 @@ public class FinalPJOnline {
 
         List<String> imageFiles = new ArrayList<String>();
         File dir = new File(Constant.Query_DIR_PATH);
+        String audioName = "";
         for(File file: dir.listFiles()){
             if(file.getName().endsWith(Constant.IMAGE_EXTENTSION)){
                 imageFiles.add(file.getName());
+            }
+            if(file.getName().endsWith(Constant.AUDIO_EXTENSION)){
+                audioName = file.getName();
             }
         }
 
@@ -40,12 +44,16 @@ public class FinalPJOnline {
             queryTextFeatureList.add(textFeature);
         }
 
+        //extract audio info
+        WaveDecoder waveDecoder = new WaveDecoder();
+        String audioPath = Constant.Query_DIR_PATH + audioName;
+        List<Integer> queryAudioFeatureList = waveDecoder.extractAudioFeature(audioPath, 150);
 
-        compare(queryTextFeatureList);
+        compare(queryTextFeatureList, queryAudioFeatureList);
 
     }
 
-    public static void compare(List<TextFeature> queryTextFeatureList){
+    public static void compare(List<TextFeature> queryTextFeatureList, List<Integer> queryAudioFeatureList){
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
         dbProcessor.onlineTableInitialize();
@@ -53,6 +61,7 @@ public class FinalPJOnline {
         //loof for category
         for(int k=0; k<Constant.CATEGORY.length; k++) {
             List<TextFeature> dbTextFeatureList = dbProcessor.getTextFeature(Constant.CATEGORY[k]);
+            List<String> dbAudioFeatureList = dbProcessor.getAudioFeature(Constant.CATEGORY[k]);
             double categorySimilarity = 0;
             int loopSizePerFile = dbTextFeatureList.size() - queryTextFeatureList.size();
             //loop for windows
@@ -63,13 +72,18 @@ public class FinalPJOnline {
                     double dbH1 = dbTextFeatureList.get(j + i).getH1();
                     double dbH2 = dbTextFeatureList.get(j + i).getH2();
                     int dbSurf = dbTextFeatureList.get(j + i).getSurf();
+                    double dbAudio = Double.parseDouble(dbAudioFeatureList.get(j + i));
+
                     double queryH1 = queryTextFeatureList.get(j).getH1();
                     double queryH2 = queryTextFeatureList.get(j).getH2();
                     int querySurf = queryTextFeatureList.get(j).getSurf();
+                    double queryAudio = queryAudioFeatureList.get(j);
 
                     double diffH1 = Math.abs(queryH1 - dbH1);
                     double diffH2 = Math.abs(queryH2 - dbH2);
                     int diffSurf = Math.abs(querySurf - dbSurf);
+                    double diffAudio = Math.abs(queryAudio - dbAudio);
+
 
                     if (dbH1 == 0.0)
                         dbH1 = 1.0;
@@ -77,6 +91,8 @@ public class FinalPJOnline {
                         dbH2 = 1.0;
                     if (dbSurf == 0)
                         dbSurf = 1;
+                    if (dbAudio == 0.0)
+                        dbAudio = 1;
 
                     double errorH1 = diffH1 / dbH1;
                     if (errorH1 > 1.0)
@@ -87,8 +103,11 @@ public class FinalPJOnline {
                     double errorSurf = (float)diffSurf/(float)dbSurf;
                     if (errorSurf > 1.0)
                         errorSurf = 1.0;
+                    double errorAudio = diffAudio/dbAudio;
+                    if (errorAudio > 1.0)
+                        errorAudio = 1.0;
 
-                    double frameSimilarity = ((1 - errorH1) + (1 - errorH2) + (1 - errorSurf)) / 3;
+                    double frameSimilarity = ((1 - errorAudio)) / 1;
                     windowSimilarity += frameSimilarity;
                 }
                 windowSimilarity = windowSimilarity / queryTextFeatureList.size();

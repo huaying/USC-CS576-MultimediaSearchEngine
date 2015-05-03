@@ -6,6 +6,7 @@ package videosearch;
 public class Constant {
     static final int SCALE_INDEX = 256;
     static final String IMAGE_EXTENTSION = ".rgb";
+    static final String AUDIO_EXTENSION = ".wav";
     static final String DB_DIR_PATH = "../database/";
     static final String[] CATEGORY = {"interview", "musicvideo"};
     static final String Query_DIR_PATH = "../query/first/";

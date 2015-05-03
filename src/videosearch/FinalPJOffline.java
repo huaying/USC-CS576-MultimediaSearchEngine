@@ -16,31 +16,44 @@ public class FinalPJOffline {
 
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
+        dbProcessor.offLineAudioTableInitialize();
 
         for(int k=0; k<Constant.CATEGORY.length; k++) {
             File dir = new File(Constant.DB_DIR_PATH + Constant.CATEGORY[k] + "/");
             List<String> imageFiles = new ArrayList<String>();
+            String audioName = "";
             for (File file : dir.listFiles()) {
                 if (file.getName().endsWith(Constant.IMAGE_EXTENTSION)) {
                     imageFiles.add(file.getName());
                 }
+                if(file.getName().endsWith(Constant.AUDIO_EXTENSION)){
+                    audioName = file.getName();
+                }
             }
-
-            dbProcessor.offlineTableInitialize(Constant.CATEGORY[k]);
+            dbProcessor.offlineImageTableInitialize(Constant.CATEGORY[k]);
             for (String imagename : imageFiles) {
                 String imageNamewithoutEx = FilenameUtils.removeExtension(imagename);
                 String imagePath = Constant.DB_DIR_PATH + Constant.CATEGORY[k] + "/" + imagename;
                 BufferedImage img = converter(imagePath);
 
                 /*image feature extract*/
-
-                //tamura feature
                 TextFeatureExtractor textFeatureExtractor = new TextFeatureExtractor();
                 double[] histogram = textFeatureExtractor.extract(img);
                 SurfExtractor surfExtractor = new SurfExtractor();
                 int surf = surfExtractor.execute(ImageUtils.scaleImage(img, Constant.SCALE_INDEX));
                 dbProcessor.storeTextFeature(imagename, Constant.CATEGORY[k], histogram, surf);
+
             }
+
+            /* audio feature extract */
+            String audioResult = "";
+            WaveDecoder waveDecoder = new WaveDecoder();
+            String audioPath = Constant.DB_DIR_PATH + Constant.CATEGORY[k] + "/" + audioName;
+            List<Integer> audioFeature = waveDecoder.extractAudioFeature(audioPath, 600);
+            for(int item: audioFeature){
+                audioResult += String.valueOf(item)+",";
+            }
+            dbProcessor.storeAudioFeature(Constant.CATEGORY[k], audioResult);
         }
         dbProcessor.closeConnection();
 
