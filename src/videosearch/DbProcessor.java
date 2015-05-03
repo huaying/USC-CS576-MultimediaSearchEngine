@@ -25,17 +25,25 @@ public class DbProcessor {
 
     }
 
-    public void offlineTableInitialize(String category){
+    public void offLineAudioTableInitialize(){
         try {
-            String deleteTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
-            stmt.executeUpdate(deleteTableSql);
+            String deleteATableSql = "DROP TABLE IF EXISTS AUDIOFEATURE";
+            stmt.executeUpdate(deleteATableSql);
+            String buildAudioFeatureTable = "CREATE TABLE IF NOT EXISTS AUDIOFEATURE (CATEGORY VARCHAR(255), FEATURE CLOB)";
+            stmt.executeUpdate(buildAudioFeatureTable);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void offlineImageTableInitialize(String category){
+        try {
+            String deleteImageTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
+            stmt.executeUpdate(deleteImageTableSql);
             String buildTextFeatureTable = "CREATE TABLE IF NOT EXISTS TEXTFEATURE_"+category+"" +
                     "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE, SURF INT)";
             stmt.executeUpdate(buildTextFeatureTable);
-            String clearDataSql = "DELETE FROM TEXTFEATURE_"+category+"";
-            stmt.executeUpdate(clearDataSql);
-            String resetIdSql = "ALTER TABLE TEXTFEATURE_"+category+" ALTER COLUMN ID RESTART WITH 1";
-            stmt.executeUpdate(resetIdSql);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -59,6 +67,15 @@ public class DbProcessor {
             e.printStackTrace();
         }
 
+    }
+
+    public void storeAudioFeature(String category, String audioFeature){
+        try {
+            String sql = "INSERT INTO AUDIOFEATURE VALUES('"+category+"', '"+audioFeature+"')";
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public void storeTextFeature(String imagename, String category, double[] histogram, int surf)  {
@@ -141,6 +158,24 @@ public class DbProcessor {
             e.printStackTrace();
         }
         return textFeatureList;
+    }
+
+    public List<String> getAudioFeature(String category){
+        List<String> audioResult = new ArrayList<String>();
+        String result = "";
+        try {
+            String sql = "SELECT * FROM AUDIOFEATURE WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                result = rs.getString("FEATURE");
+            }
+            audioResult = Arrays.asList(result.split(","));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return audioResult;
+
     }
 
     public void closeConnection(){

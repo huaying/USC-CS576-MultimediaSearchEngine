@@ -1,6 +1,7 @@
 package videosearch;
 
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
 import java.awt.image.WritableRaster;
 
@@ -148,6 +149,15 @@ public class ImageUtils {
         result.getGraphics().drawImage(img, 0, 0, result.getWidth(), result.getHeight(),
                 xmin, ymin, xmax, ymax, null);
         return result;
+    }
+
+    public static BufferedImage get8BitRGBImage(BufferedImage bufferedImage) {
+        if (bufferedImage.getType() != ColorSpace.TYPE_RGB || bufferedImage.getSampleModel().getSampleSize(0) != 8) {
+            BufferedImage img = new BufferedImage(bufferedImage.getWidth(), bufferedImage.getHeight(), BufferedImage.TYPE_INT_RGB);
+            img.getGraphics().drawImage(bufferedImage, 0, 0, null);
+           bufferedImage = img;
+        }
+        return bufferedImage;
     }
 
 
