@@ -2,11 +2,14 @@ package videosearch;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.ObjectProperty;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 import javax.imageio.ImageIO;
@@ -17,7 +20,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 /**
  * Created by huayingt on 4/16/15.
  */
@@ -33,6 +37,8 @@ public class Player{
     protected boolean playing;
     protected Player that;
     protected Notifier notifier;
+    protected Map<String,MediaPlayer> movies_music;
+    MediaPlayer mediaPlayer;
 
 
     public Player(ImageView imageView, Notifier notifier){
@@ -45,6 +51,7 @@ public class Player{
         num_frame = 0;
 
         movies = new HashMap<String, List>();
+        movies_music = new HashMap<String, MediaPlayer>();
     }
 
     protected  void preload(String path) throws IOException{
@@ -55,15 +62,18 @@ public class Player{
 
         for (File file : dir.listFiles()) {
             String filename = file.getName();
-            if (filename.endsWith(".video")) {
-                imgs = RGB.getRGBVideo(file.getPath());
-                for(BufferedImage img : imgs) {
-                    frames.add(SwingFXUtils.toFXImage(img, null));
-                }
-                Debug.print("load: " + filename);
-                break;
+            if (filename.endsWith(".wav")){
+                mediaPlayer = new MediaPlayer(new Media(new File(file.getPath()).toURI().toString()));
+                Debug.print(file.getPath());
             }
 
+//            if (filename.endsWith(".video")) {
+//                imgs = RGB.getRGBVideo(file.getPath());
+//                for (BufferedImage img : imgs) {
+//                    frames.add(SwingFXUtils.toFXImage(img, null));
+//                }
+//                Debug.print("load: " + filename);
+//            }
             if (filename.endsWith(".rgb")) {
                 frames.add(SwingFXUtils.toFXImage(RGB.getRGBImage(
                         file.getPath()
@@ -77,6 +87,7 @@ public class Player{
 
         }
         movies.put(path,frames);
+        movies_music.put(path, mediaPlayer);
 
     }
 
@@ -85,6 +96,7 @@ public class Player{
         this.path = path;
         if(!movies.containsKey(path)) preload(path);
         frames = movies.get(path);
+        mediaPlayer = movies_music.get(path);
         num_frame = frames.size();
         resetTimer();
         preview();
@@ -102,22 +114,31 @@ public class Player{
         if(i != cur_frame_id && i != num_frame) {
             cur_frame_id = i;
             imageView.setImage(frames.get(i));
+            mediaPlayer.stop();
+            mediaPlayer.setStartTime(Duration.millis(33.33333*i));
+            if (playing){
+                mediaPlayer.play();
+            }
         }
     }
 
     protected void play(){
         playing = true;
         timer.play();
+        mediaPlayer.play();
     }
 
     protected void pause(){
         playing = false;
         timer.pause();
+        mediaPlayer.pause();
     }
 
     protected void stop(){
         playing = false;
         timer.stop();
+        mediaPlayer.stop();
+        mediaPlayer.setStartTime(Duration.ZERO);
         this.preview();
         resetTimer();
     }
@@ -133,7 +154,7 @@ public class Player{
             @Override
             public void handle(ActionEvent event) {
 
-                Debug.print("frame: " + cur_frame_id);
+                Debug.print("frame: " + cur_frame_id,num_frame);
 
                 if (cur_frame_id < num_frame) {
                     imageView.setImage(frames.get(cur_frame_id));
