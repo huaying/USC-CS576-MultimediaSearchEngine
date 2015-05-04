@@ -16,22 +16,26 @@ public class Motion {
     BufferedImage img1;
     BufferedImage img2;
     ArrayList<BufferedImage> imgs = new ArrayList<BufferedImage>();
-    int sample_size = 5;
-    int b_size = 8;
+    int sample_size = 1;
+    int b_size = 16;
     int width = 352;
     int height = 288;
     int b_width = 352/b_size;
     int b_height = 288/b_size;
     ArrayList<int []> vectors = new ArrayList<int[]>();
+    ArrayList<Double> motions = new ArrayList<Double>();
 
     static public void main(String argv[]){
         new Motion();
     }
     Motion(){
+        //offline2();
+        online2();
 
-
-//        String path1 = "../database/sports/sports375.rgb";
-//        String path2 = "../database/sports/sports376.rgb";
+        //String path1 = "../database/musicvideo/musicvideo121.rgb";
+        //String path2 = "../database/musicvideo/musicvideo122.rgb";
+//        String path1 = "../query/first/first001.rgb";
+//        String path2 = "../query/first/first002.rgb";
 //        img1 = RGB.getRGBImage(path1);
 //        img2 = RGB.getRGBImage(path2);
 //        for (int y = 0; y < b_height; y++) {
@@ -42,6 +46,65 @@ public class Motion {
 //            }
 //       }
 
+
+    }
+    public void online2(){
+        DbProcessor dbProcessor = new DbProcessor();
+        dbProcessor.buildConnection();
+        boolean first_img = true;
+        ArrayList<ArrayList> vectors_container = new ArrayList<ArrayList>();
+        ArrayList<int []>ref_vector = new ArrayList<int[]>();
+
+        File dir = new File("../query/first/");
+        for (File file : dir.listFiles()) {
+            String filename = file.getName();
+            if (filename.endsWith(".rgb")) {
+                imgs.add(RGB.getRGBImage(file.getPath()));
+            }
+        }
+        double motion;
+        for(int i=0; i<imgs.size(); i+=sample_size){
+            if(i>0) {
+                img1 = imgs.get(i - 1);
+                img2 = imgs.get(i);
+                motion = 0;
+                for (int y = 0; y < b_height; y++) {
+                    for (int x = 0; x < b_width; x++) {
+                        int [] p = this.computeSAD(x*b_size,y*b_size);
+                        motion += distance(p[0],p[1]);
+                    }
+                }
+                motions.add(motion);
+            }
+        }
+        ArrayList<Double> mfs = dbProcessor.getMotionFeature2("musicvideo");
+
+        int [] vector;
+        int block_num = b_height*b_width;
+        int frame_num = mfs.size();
+        int query_frames = motions.size();
+        int cmploop = frame_num - query_frames;
+        double v;
+
+//        Debug.print(mfs.get(120),motions.get(0));
+        for (int i =0 ; i< cmploop ; i+=1){
+
+
+            //compute the similarity of every clip
+            v = 0;
+            for(int j = 0 ; j<query_frames ; j++){
+                //compute the similarity of every frame
+                v += Math.abs(mfs.get(i+j) -  motions.get(j));
+
+            }
+            Debug.print(i, v);
+        }
+
+        dbProcessor.closeConnection();
+
+
+    }
+    public void online(){
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
         boolean first_img = true;
@@ -61,16 +124,18 @@ public class Motion {
                 img2 = imgs.get(i);
                 for (int y = 0; y < b_height; y++) {
                     for (int x = 0; x < b_width; x++) {
-                        vectors.add(this.computeSAD(x * b_size, y * b_size));
+                        int [] p = this.computeSAD(x*b_size,y*b_size);
+                        vectors.add(p);
                     }
                 }
-                //Debug.print("finish: " + i);
+                Debug.print("finish: " + i);
                 vectors_container.add(vectors);
                 vectors = new ArrayList<int[]>();
             }
         }
         ArrayList<MotionFeature> mfs = (ArrayList<MotionFeature>) dbProcessor.getMotionFeature("musicvideo");
         MotionFeature mf;
+
         int [] vector;
         int block_num = b_height*b_width;
         int frame_num = mfs.size()/block_num;
@@ -80,24 +145,60 @@ public class Motion {
 
         for (int i =0 ; i< cmploop ; i+=1){
 
+
             //compute the similarity of every clip
             v = 0;
             for(int j = 0 ; j<query_frames ; j++){
                 //compute the similarity of every frame
-                vectors = vectors_container.get(j);
+                 vectors = vectors_container.get(j);
                 for (int bi = 0 ; bi<b_height;bi++){
                     for (int bj = 0 ; bj<b_width ; bj++){
-                        mf = mfs.get(i*block_num + (bi*b_height)+bj);
-                        vector = vectors.get(bi*b_height+bj);
-                        v += Math.abs(mf.x - vector[0])+Math.abs(mf.y-vector[1]);
+                        mf = mfs.get((i+j) * block_num + (bi * b_width) + bj);
+                        vector = vectors.get(bi * b_width + bj);
+                        v += Math.abs(mf.x - vector[0]) + Math.abs(mf.y - vector[1]);
                     }
                 }
+
             }
-            Debug.print(v);
+            Debug.print(i, v);
         }
 
         dbProcessor.closeConnection();
 
+
+    }
+    public void offline2(){
+// ============= OffLine ===========================
+        DbProcessor dbProcessor = new DbProcessor();
+        dbProcessor.buildConnection();
+        dbProcessor.offLineMotionTableInitialize2();
+        boolean first_img = true;
+        File dir = new File("../database/musicvideo/");
+        for (File file : dir.listFiles()) {
+            String filename = file.getName();
+            if (filename.endsWith(".rgb")) {
+                imgs.add(RGB.getRGBImage(file.getPath()));
+            }
+        }
+
+        double motion;
+        for(int i=0; i<imgs.size(); i+=sample_size){
+            if(i>0) {
+                img1 = imgs.get(i - 1);
+                img2 = imgs.get(i);
+                motion = 0;
+                for (int y = 0; y < b_height; y++) {
+                    for (int x = 0; x < b_width; x++) {
+                        int [] p = this.computeSAD(x*b_size,y*b_size);
+                        motion += distance(p[0],p[1]);
+                    }
+                }
+                Debug.print("finish: " + i);
+                motions.add(motion);
+            }
+        }
+        dbProcessor.storeMotionFeature2("musicvideo", motions);
+        dbProcessor.closeConnection();
 
     }
     public void offline(){
@@ -120,7 +221,8 @@ public class Motion {
                 img2 = imgs.get(i);
                 for (int y = 0; y < b_height; y++) {
                     for (int x = 0; x < b_width; x++) {
-                        vectors.add(this.computeSAD(x * b_size, y * b_size));
+                        int [] p = this.computeSAD(x*b_size,y*b_size);
+                        vectors.add(p);
                     }
                 }
                 Debug.print("finish: " + i);
@@ -128,8 +230,12 @@ public class Motion {
                 vectors = new ArrayList<int[]>();
             }
         }
+        dbProcessor.storeMotionFeature2("musicvideo", motions);
         dbProcessor.closeConnection();
 
+    }
+    private double distance(int x, int y){
+        return Math.sqrt(x*x + y*y);
     }
 
     private int[] computeSAD(int x, int y){
