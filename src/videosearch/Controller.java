@@ -153,7 +153,7 @@ public class Controller extends VBox implements Notifier{
     }
     private void setQueryVideo() throws IOException {
         player_clip = new Player(video_clip,this);
-        player_clip.load("../query/first/");
+        player_clip.load("../query/second/");
 
     }
     private void setMatchVideo() throws IOException {

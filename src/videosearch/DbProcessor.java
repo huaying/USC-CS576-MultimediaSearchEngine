@@ -156,6 +156,31 @@ public class DbProcessor {
         }
     }
 
+    public void storeWindowResultImage(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTIMAGE VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void storeWindowResultMotion(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTMOTION VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void storeWindowResultAudio(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTAUDIO VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void storeCategoryResult(List<CategoryResult> categoryResultList){
         try {
             for(CategoryResult cr: categoryResultList){
@@ -188,6 +213,51 @@ public class DbProcessor {
         Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
         try {
             String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULT WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+    public Map<Integer, Double> getWindowResultImage(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTIMAGE WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+    public Map<Integer, Double> getWindowResultMotion(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTMOTION WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+    public Map<Integer, Double> getWindowResultAudio(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTAUDIO WHERE CATEGORY='"+category+"'";
             ResultSet rs = stmt.executeQuery(getWindowResultSql);
             while(rs.next()){
                 int index = rs.getInt("WINDOWINDEX");

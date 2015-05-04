@@ -26,7 +26,7 @@ public class Motion {
     ArrayList<Double> motions = new ArrayList<Double>();
 
     static public void main(String argv[]){
-        new Motion().offline2();
+        //new Motion().offline2();
         new Motion().online2();
     }
     Motion(){
@@ -44,7 +44,7 @@ public class Motion {
         ArrayList<ArrayList> vectors_container = new ArrayList<ArrayList>();
         ArrayList<int []>ref_vector = new ArrayList<int[]>();
 
-        File dir = new File("../query/first/");
+        File dir = new File("../query/second/");
         for (File file : dir.listFiles()) {
             String filename = file.getName();
             if (filename.endsWith(".rgb")) {
@@ -72,7 +72,7 @@ public class Motion {
                 motions.add(motion);
             }
         }
-        ArrayList<Double> mfs = dbProcessor.getMotionFeature2("musicvideo");
+        ArrayList<Double> mfs = dbProcessor.getMotionFeature2("sports");
 
         int [] vector;
         int block_num = b_height*b_width;
@@ -80,6 +80,7 @@ public class Motion {
         int query_frames = motions.size();
         int cmploop = frame_num - query_frames;
         double v;
+        ArrayList<Double> vs = new ArrayList<>();
 
 //        Debug.print(mfs.get(120),motions.get(0));
         for (int i =0 ; i< cmploop ; i+=1){
@@ -92,13 +93,30 @@ public class Motion {
                 v += Math.abs(mfs.get(i + j) - motions.get(j));
 
             }
-            Debug.print(i, v);
+            vs.add(v);
+
+            int [] mtable = {0,2000,5000,50000,100000,200000};
+            int [] mpercent_table = {0,1,20,40,80,100};
+            double p = 99;
+
+            for(int x=0; x < mtable.length;x++ ){
+                if(x!=0) {
+                    if (v > mtable[x-1] && v < mtable[x]) {
+                        p = ((v - mtable[x - 1]) / (mtable[x] - mtable[x - 1])) * (mpercent_table[x] - mpercent_table[x - 1]) + mpercent_table[x - 1];
+                    }
+                }
+            }
+
+            p = 100-p;
+            Debug.print(i, v, p );
+
         }
 
         dbProcessor.closeConnection();
 
 
     }
+
     public void offline2(){
 // ============= OffLine ===========================
         DbProcessor dbProcessor = new DbProcessor();
@@ -108,7 +126,7 @@ public class Motion {
 
 
         HashMap<String,BufferedImage> imgmap = new HashMap<>();
-        File dir = new File("../database/musicvideo/");
+        File dir = new File("../database/sports/");
         Arrays.asList(dir.listFiles()).parallelStream().forEach(file -> {
             String filename = file.getName();
             if (filename.endsWith(".rgb")) {
@@ -153,7 +171,7 @@ public class Motion {
                 motions.add(motion);
             }
         }
-        dbProcessor.storeMotionFeature2("musicvideo", motions);
+        dbProcessor.storeMotionFeature2("sports", motions);
         dbProcessor.closeConnection();
 
     }
