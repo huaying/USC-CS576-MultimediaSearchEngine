@@ -16,10 +16,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 /**
@@ -54,7 +51,7 @@ public class Player{
         movies_music = new HashMap<String, MediaPlayer>();
     }
 
-    protected  void preload(String path) throws IOException{
+    protected  PlayerPreLoad preload(String path) throws IOException{
 
         File dir = new File(path);
         List<Image>frames = new ArrayList<Image>();
@@ -66,14 +63,6 @@ public class Player{
                 mediaPlayer = new MediaPlayer(new Media(new File(file.getPath()).toURI().toString()));
                 Debug.print(file.getPath());
             }
-
-//            if (filename.endsWith(".video")) {
-//                imgs = RGB.getRGBVideo(file.getPath());
-//                for (BufferedImage img : imgs) {
-//                    frames.add(SwingFXUtils.toFXImage(img, null));
-//                }
-//                Debug.print("load: " + filename);
-//            }
             if (filename.endsWith(".rgb")) {
                 frames.add(SwingFXUtils.toFXImage(RGB.getRGBImage(
                         file.getPath()
@@ -86,15 +75,19 @@ public class Player{
             }
 
         }
-        movies.put(path,frames);
-        movies_music.put(path, mediaPlayer);
-
+        return new PlayerPreLoad(frames, mediaPlayer);
+    }
+    protected void putPreload(String path,PlayerPreLoad pp){
+        movies.put(path,pp.frames);
+        movies_music.put(path, pp.mediaPlayer);
     }
 
     protected void load(String path) throws IOException {
 
         this.path = path;
-        if(!movies.containsKey(path)) preload(path);
+        if(!movies.containsKey(path)){
+            putPreload(path,preload(path));
+        }
         frames = movies.get(path);
         mediaPlayer = movies_music.get(path);
         num_frame = frames.size();

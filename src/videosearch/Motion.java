@@ -4,8 +4,8 @@ import javafx.embed.swing.SwingFXUtils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
 
 
 /**
@@ -29,8 +29,13 @@ public class Motion {
         new Motion();
     }
     Motion(){
+
+        final long startTime = System.currentTimeMillis();
         //offline2();
         online2();
+        final long endTime = System.currentTimeMillis();
+        Debug.print("Total execution time: " + (endTime - startTime));
+
 
         //String path1 = "../database/musicvideo/musicvideo121.rgb";
         //String path2 = "../database/musicvideo/musicvideo122.rgb";
@@ -68,10 +73,16 @@ public class Motion {
                 img1 = imgs.get(i - 1);
                 img2 = imgs.get(i);
                 motion = 0;
+                double [][] ms = new double[b_height][b_width];
+                IntStream.range(0, b_height).parallel().
+                    forEach(y -> IntStream.range(0, b_width).
+                            forEach(x -> {
+                                int [] p = this.computeSAD(x*b_size,y*b_size);
+                                ms[y][x] = distance(p[0],p[1]);
+                            }));
                 for (int y = 0; y < b_height; y++) {
                     for (int x = 0; x < b_width; x++) {
-                        int [] p = this.computeSAD(x*b_size,y*b_size);
-                        motion += distance(p[0],p[1]);
+                        motion += ms[y][x];
                     }
                 }
                 motions.add(motion);
@@ -94,7 +105,7 @@ public class Motion {
             v = 0;
             for(int j = 0 ; j<query_frames ; j++){
                 //compute the similarity of every frame
-                v += Math.abs(mfs.get(i+j) -  motions.get(j));
+                v += Math.abs(mfs.get(i + j) - motions.get(j));
 
             }
             Debug.print(i, v);
@@ -173,13 +184,29 @@ public class Motion {
         dbProcessor.buildConnection();
         dbProcessor.offLineMotionTableInitialize2();
         boolean first_img = true;
+
+
+        HashMap<String,BufferedImage> imgmap = new HashMap<>();
         File dir = new File("../database/musicvideo/");
-        for (File file : dir.listFiles()) {
+        Arrays.asList(dir.listFiles()).parallelStream().forEach(file -> {
             String filename = file.getName();
             if (filename.endsWith(".rgb")) {
-                imgs.add(RGB.getRGBImage(file.getPath()));
+                imgmap.put(filename,RGB.getRGBImage(file.getPath()));
             }
-        }
+        });
+        //sort hash_map by key
+        imgs = new ArrayList<>(new TreeMap<String,BufferedImage>(imgmap).values());
+
+//        for (File file : dir.listFiles()) {
+//            String filename = file.getName();
+//            if (filename.endsWith(".rgb")) {
+//                imgs.add(RGB.getRGBImage(file.getPath()));
+//            }
+//        }
+//        for (int i=0 ; i< imgs.size();i++){
+//            Debug.print(i+1,imgs);
+//            Debug.print(i+1,imgs1);
+//        }
 
         double motion;
         for(int i=0; i<imgs.size(); i+=sample_size){
@@ -187,10 +214,18 @@ public class Motion {
                 img1 = imgs.get(i - 1);
                 img2 = imgs.get(i);
                 motion = 0;
+                double [][] ms = new double[b_height][b_width];
+                IntStream.range(0, b_height).parallel().
+                    forEach(y -> IntStream.range(0, b_width).
+                    forEach(x -> {
+                        int [] p = this.computeSAD(x*b_size,y*b_size);
+                        ms[y][x] = distance(p[0],p[1]);
+                    }));
+
+
                 for (int y = 0; y < b_height; y++) {
                     for (int x = 0; x < b_width; x++) {
-                        int [] p = this.computeSAD(x*b_size,y*b_size);
-                        motion += distance(p[0],p[1]);
+                        motion += ms[y][x];
                     }
                 }
                 Debug.print("finish: " + i);

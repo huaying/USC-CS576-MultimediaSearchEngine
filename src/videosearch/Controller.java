@@ -148,14 +148,30 @@ public class Controller extends VBox implements Notifier{
     private void setMatchVideo() throws IOException {
 
         player_src = new Player(video_src,this);
+        Map<String,PlayerPreLoad> preloads= new HashMap<String,PlayerPreLoad>();
 
         paths = new ArrayList<String>();
+//        for(CategoryResult cate : categoryResults){
+//            //String path = "../databasejpg/" + cate.getCategory();
+//            String path = "../database/" + cate.getCategory();
+//            paths.add(path);
+//            player_src.preload(path);
+//        }
+        categoryResults.parallelStream().forEach((cate) -> {
+            try {
+                String path = "../database/" + cate.getCategory();
+                preloads.put(path,player_src.preload(path));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         for(CategoryResult cate : categoryResults){
-            //String path = "../databasejpg/" + cate.getCategory();
             String path = "../database/" + cate.getCategory();
             paths.add(path);
-            player_src.preload(path);
+            player_src.putPreload(path,preloads.get(path));
         }
+
+
 
         if(paths.size()!=0) {
             player_src.load(paths.get(0));
