@@ -42,7 +42,7 @@ public class DbProcessor {
             String deleteImageTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
             stmt.executeUpdate(deleteImageTableSql);
             String buildTextFeatureTable = "CREATE TABLE IF NOT EXISTS TEXTFEATURE_"+category+"" +
-                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE, SURF INT)";
+                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), CONTRAST DOUBLE, SURF INT, COLORHISTOGRAM VARCHAR(255))";
             stmt.executeUpdate(buildTextFeatureTable);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -66,7 +66,6 @@ public class DbProcessor {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void storeAudioFeature(String category, String audioFeature){
@@ -78,10 +77,10 @@ public class DbProcessor {
         }
     }
 
-    public void storeTextFeature(String imagename, String category, double[] histogram, int surf)  {
+    public void storeTextFeature(String imagename, String category, double contrast, int surf, String colorHistogramResult)  {
 
         try {
-            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+histogram[0]+", "+histogram[1]+", "+surf+")";
+            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+contrast+", "+surf+", '"+colorHistogramResult+"')";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -149,9 +148,15 @@ public class DbProcessor {
             while(rs.next()){
                 TextFeature tf = new TextFeature();
                 tf.setImageName(rs.getString("INDEX"));
-                tf.setH1(rs.getDouble("H1"));
-                tf.setH2(rs.getDouble("H2"));
+                tf.setContrast(rs.getDouble("CONTRAST"));
                 tf.setSurf(rs.getInt("SURF"));
+                String colorHistogram = rs.getString("COLORHISTOGRAM");
+                List<String> temp = Arrays.asList(colorHistogram.split(","));
+                List<Integer> colorHistogramResult = new ArrayList<Integer>();
+                for(String item: temp){
+                    colorHistogramResult.add(Integer.parseInt(item));
+                }
+                tf.setColorHistogram(colorHistogramResult);
                 textFeatureList.add(tf);
             }
         } catch (SQLException e) {

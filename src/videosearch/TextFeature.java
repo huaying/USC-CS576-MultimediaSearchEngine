@@ -1,5 +1,7 @@
 package videosearch;
 
+import java.util.List;
+
 /**
  * Created by zjjcxt on 4/15/15.
  */
@@ -7,9 +9,9 @@ public class TextFeature {
 
 
     private String imageName;
-    private double h1;
-    private double h2;
+    private double contrast;
     private int surf;
+    private List<Integer> colorHistogram;
 
     public String getImageName() {
         return imageName;
@@ -17,22 +19,6 @@ public class TextFeature {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
-    }
-
-    public double getH1() {
-        return h1;
-    }
-
-    public void setH1(double h1) {
-        this.h1 = h1;
-    }
-
-    public double getH2() {
-        return h2;
-    }
-
-    public void setH2(double h2) {
-        this.h2 = h2;
     }
 
     public int getSurf() {
@@ -43,13 +29,29 @@ public class TextFeature {
         this.surf = surf;
     }
 
+    public double getContrast() {
+        return contrast;
+    }
+
+    public void setContrast(double contrast) {
+        this.contrast = contrast;
+    }
+
+    public List<Integer> getColorHistogram() {
+        return colorHistogram;
+    }
+
+    public void setColorHistogram(List<Integer> colorHistogram) {
+        this.colorHistogram = colorHistogram;
+    }
+
     public TextFeature() {
     }
 
-    public TextFeature(String imageName, double h1, double h2, int surf) {
+    public TextFeature(String imageName, double contrast, int surf, List<Integer> colorHistogram) {
         this.imageName = imageName;
-        this.h1 = h1;
-        this.h2 = h2;
+        this.contrast = contrast;
         this.surf = surf;
+        this.colorHistogram = colorHistogram;
     }
 }

@@ -32,15 +32,24 @@ public class FinalPJOnline {
             String imagePath = Constant.Query_DIR_PATH + imagename;
             FinalPJOffline offline = new FinalPJOffline();
             BufferedImage img = offline.converter(imagePath);
-            TextFeatureExtractor textFeatureExtractor = new TextFeatureExtractor();
-            double[] histogram = textFeatureExtractor.extract(img);
+            ContrastFeatureExtractor contrastFeatureExtractor = new ContrastFeatureExtractor();
+            //contrast extract
+            double contrastIndex = contrastFeatureExtractor.extract(img);
             SurfExtractor surfExtractor = new SurfExtractor();
+            //surf extract
             int surf = surfExtractor.execute(ImageUtils.scaleImage(img, Constant.SCALE_INDEX));
+            //colorhistogram extract
+            ColorHistogramExtractor che = new ColorHistogramExtractor();
+            List<Integer> colorHistResult = new ArrayList<Integer>();
+            int[] colorHistogram = che.extract(img);
+            for(int i=0; i<colorHistogram.length; i++){
+                colorHistResult.add(colorHistogram[i]);
+            }
             TextFeature textFeature = new TextFeature();
             textFeature.setImageName(imagename);
-            textFeature.setH1(histogram[0]);
-            textFeature.setH2(histogram[1]);
+            textFeature.setContrast(contrastIndex);
             textFeature.setSurf(surf);
+            textFeature.setColorHistogram(colorHistResult);
             queryTextFeatureList.add(textFeature);
         }
 
@@ -63,43 +72,39 @@ public class FinalPJOnline {
             List<TextFeature> dbTextFeatureList = dbProcessor.getTextFeature(Constant.CATEGORY[k]);
             List<String> dbAudioFeatureList = dbProcessor.getAudioFeature(Constant.CATEGORY[k]);
             double categorySimilarity = 0;
+            HashMap<Integer, Double> errorHistList = new HashMap<Integer, Double>();
             int loopSizePerFile = dbTextFeatureList.size() - queryTextFeatureList.size();
             //loop for windows
             for (int i = 0; i < loopSizePerFile; i++) {
                 double windowSimilarity = 0;
+                double windowErrorHist = 0;
                 //loop for corresponding frame
                 for (int j = 0; j < queryTextFeatureList.size(); j++) {
-                    double dbH1 = dbTextFeatureList.get(j + i).getH1();
-                    double dbH2 = dbTextFeatureList.get(j + i).getH2();
+                    double dbContrast = dbTextFeatureList.get(j + i).getContrast();
                     int dbSurf = dbTextFeatureList.get(j + i).getSurf();
+                    List<Integer> dbColorHist = dbTextFeatureList.get(j + i).getColorHistogram();
                     double dbAudio = Double.parseDouble(dbAudioFeatureList.get(j + i));
 
-                    double queryH1 = queryTextFeatureList.get(j).getH1();
-                    double queryH2 = queryTextFeatureList.get(j).getH2();
+                    double queryContrast = queryTextFeatureList.get(j).getContrast();
                     int querySurf = queryTextFeatureList.get(j).getSurf();
+                    List<Integer> queryColorHist = queryTextFeatureList.get(j).getColorHistogram();
                     double queryAudio = queryAudioFeatureList.get(j);
 
-                    double diffH1 = Math.abs(queryH1 - dbH1);
-                    double diffH2 = Math.abs(queryH2 - dbH2);
+                    double diffContrast = Math.abs(queryContrast - dbContrast);
                     int diffSurf = Math.abs(querySurf - dbSurf);
                     double diffAudio = Math.abs(queryAudio - dbAudio);
 
 
-                    if (dbH1 == 0.0)
-                        dbH1 = 1.0;
-                    if (dbH2 == 0.0)
-                        dbH2 = 1.0;
+                    if (dbContrast == 0.0)
+                        dbContrast = 1.0;
                     if (dbSurf == 0)
                         dbSurf = 1;
                     if (dbAudio == 0.0)
                         dbAudio = 1;
 
-                    double errorH1 = diffH1 / dbH1;
-                    if (errorH1 > 1.0)
-                        errorH1 = 1.0;
-                    double errorH2 = diffH2 / dbH2;
-                    if (errorH2 > 1.0)
-                        errorH2 = 1.0;
+                    double errorContrast = diffContrast / dbContrast;
+                    if (errorContrast > 1.0)
+                        errorContrast = 1.0;
                     double errorSurf = (float)diffSurf/(float)dbSurf;
                     if (errorSurf > 1.0)
                         errorSurf = 1.0;
@@ -107,7 +112,9 @@ public class FinalPJOnline {
                     if (errorAudio > 1.0)
                         errorAudio = 1.0;
 
-                    double frameSimilarity = ((1 - errorAudio)) / 1;
+                    double errorColorHist = getColorHistError(dbColorHist, queryColorHist);
+
+                    double frameSimilarity = (1 - errorContrast);
                     windowSimilarity += frameSimilarity;
                 }
                 windowSimilarity = windowSimilarity / queryTextFeatureList.size();
@@ -133,6 +140,24 @@ public class FinalPJOnline {
         dbProcessor.closeConnection();
 
 
+    }
+
+    public static double getColorHistError(List<Integer> dbColorHist, List<Integer> queryColorHist){
+        double result = 0.0;
+        for(int i=0; i<queryColorHist.size(); i++){
+            double diff = (double)Math.abs(dbColorHist.get(i) - queryColorHist.get(i));
+            double fenmu = dbColorHist.get(i);
+            if(fenmu == 0){
+                fenmu = 1;
+            }
+            double error = diff/(double)fenmu;
+            if(error > 1.0){
+                error = 1;
+            }
+            result += error;
+        }
+        result = result/64;
+        return result;
     }
 
 

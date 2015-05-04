@@ -37,11 +37,20 @@ public class FinalPJOffline {
                 BufferedImage img = converter(imagePath);
 
                 /*image feature extract*/
-                TextFeatureExtractor textFeatureExtractor = new TextFeatureExtractor();
-                double[] histogram = textFeatureExtractor.extract(img);
+                //contrast feature
+                ContrastFeatureExtractor contrastFeatureExtractor = new ContrastFeatureExtractor();
+                double contrastindex = contrastFeatureExtractor.extract(img);
+                //surf feature
                 SurfExtractor surfExtractor = new SurfExtractor();
                 int surf = surfExtractor.execute(ImageUtils.scaleImage(img, Constant.SCALE_INDEX));
-                dbProcessor.storeTextFeature(imagename, Constant.CATEGORY[k], histogram, surf);
+                //color histogram
+                String colorHistogramResult = "";
+                ColorHistogramExtractor colorHistogramExtractor = new ColorHistogramExtractor();
+                int[] colorHistogram = colorHistogramExtractor.extract(img);
+                for(int item: colorHistogram){
+                    colorHistogramResult += String.valueOf(item)+",";
+                }
+                dbProcessor.storeTextFeature(imagename, Constant.CATEGORY[k], contrastindex, surf, colorHistogramResult);
 
             }
 
@@ -54,6 +63,7 @@ public class FinalPJOffline {
                 audioResult += String.valueOf(item)+",";
             }
             dbProcessor.storeAudioFeature(Constant.CATEGORY[k], audioResult);
+            System.out.println("finish_offline: " + Constant.CATEGORY[k]);
         }
         dbProcessor.closeConnection();
 
