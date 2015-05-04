@@ -26,15 +26,16 @@ public class Motion {
     ArrayList<Double> motions = new ArrayList<Double>();
 
     static public void main(String argv[]){
-        new Motion();
+        new Motion().offline2();
+        new Motion().online2();
     }
     Motion(){
-        final long startTime = System.currentTimeMillis();
-        offline2();
+        //final long startTime = System.currentTimeMillis();
+        //offline2();
         //online2();
         //test();
-        final long endTime = System.currentTimeMillis();
-        Debug.print("Total execution time: " + (endTime - startTime));
+        //final long endTime = System.currentTimeMillis();
+        //Debug.print("Total execution time: " + (endTime - startTime));
     }
     public void online2(){
         DbProcessor dbProcessor = new DbProcessor();
