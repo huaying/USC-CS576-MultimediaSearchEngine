@@ -14,10 +14,15 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
 
+
+        final long startTime = System.currentTimeMillis();
         Controller controller = new Controller();
+        final long endTime = System.currentTimeMillis();
+        Debug.print("Total execution time: " + (endTime - startTime));
+
         primaryStage.setTitle("VideoSearch");
 
-        primaryStage.setScene(new Scene(controller, 820, 600));
+        primaryStage.setScene(new Scene(controller, 820, 620));
         primaryStage.setResizable(false);
         primaryStage.show();
 

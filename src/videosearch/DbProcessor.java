@@ -37,6 +37,29 @@ public class DbProcessor {
 
     }
 
+    public void offLineMotionTableInitialize(){
+        try {
+            String deleteATableSql = "DROP TABLE IF EXISTS MOTIONFEATURE";
+            stmt.executeUpdate(deleteATableSql);
+            String buildMotionFeatureTable = "CREATE TABLE IF NOT EXISTS MOTIONFEATURE (CATEGORY VARCHAR(255) , FRAMEID INT, BLOCKID INT, X INT, Y INT)";
+            stmt.executeUpdate(buildMotionFeatureTable);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void offLineMotionTableInitialize2(){
+        try {
+            String deleteATableSql = "DROP TABLE IF EXISTS MOTIONFEATURE2";
+            stmt.executeUpdate(deleteATableSql);
+            String buildMotionFeatureTable = "CREATE TABLE IF NOT EXISTS MOTIONFEATURE2 (CATEGORY VARCHAR(255) , FRAMEID INT, MOTION DOUBLE)";
+            stmt.executeUpdate(buildMotionFeatureTable);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void offlineImageTableInitialize(String category){
         try {
             String deleteImageTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
@@ -71,6 +94,43 @@ public class DbProcessor {
     public void storeAudioFeature(String category, String audioFeature){
         try {
             String sql = "INSERT INTO AUDIOFEATURE VALUES('"+category+"', '"+audioFeature+"')";
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void storeMotionFeature(String category, int frameid, ArrayList<int []> vector){
+        try {
+            int i = 0;
+            String insert_value = "";
+            for(int [] v : vector){
+                if(i > 0 ){
+                    insert_value += ",";
+                }
+                insert_value+= "('"+category+"', "+frameid+", "+ (i++) +", "+v[0]+", "+v[1]+")";
+                i++;
+            }
+            String sql = "INSERT INTO MOTIONFEATURE VALUES" + insert_value;
+            stmt.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void storeMotionFeature2(String category, ArrayList<Double> motions){
+        try {
+            int i = 0;
+            String insert_value = "";
+            for(double m : motions){
+                if(i > 0 ){
+                    insert_value += ",";
+                }
+                insert_value+= "('"+category+"',"+i+","+m+")";
+                i++;
+            }
+            String sql = "INSERT INTO MOTIONFEATURE2 VALUES" + insert_value;
+            Debug.print(sql);
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,6 +223,43 @@ public class DbProcessor {
             e.printStackTrace();
         }
         return textFeatureList;
+    }
+
+    public List<MotionFeature> getMotionFeature(String category){
+        List<MotionFeature> motionlist = new ArrayList<MotionFeature>();
+        try {
+            String sql = "SELECT * FROM MOTIONFEATURE WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                MotionFeature mf = new MotionFeature(
+                        rs.getInt("FRAMEID"),
+                        rs.getInt("BLOCKID"),
+                        rs.getInt("X"),
+                        rs.getInt("Y")
+                );
+                motionlist.add(mf);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return motionlist;
+
+    }
+    public ArrayList<Double> getMotionFeature2(String category){
+        ArrayList<Double> motionlist = new ArrayList<Double>();
+        try {
+            String sql = "SELECT * FROM MOTIONFEATURE2 WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(sql);
+            while(rs.next()){
+                motionlist.add(rs.getDouble("MOTION"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return motionlist;
+
     }
 
     public List<String> getAudioFeature(String category){

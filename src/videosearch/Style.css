@@ -13,3 +13,29 @@
 .combo-box .cell{
     -fx-font: 15px monospace;
 }
+
+#chartpane .chart-series-line{
+    -fx-stroke-width: 1;
+}
+#chartpane .axis-label {
+    -fx-font: 14px monospace;
+}
+
+.combo-box .list-cell
+{
+    -fx-background: white;
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-base-color;
+    -fx-padding: 3 0 2 7;
+    -fx-cell-size: 1.6em;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+}
+
+.combo-box-base
+{
+    -fx-background-color: white;
+    -fx-background-radius: 3;
+    -fx-padding: 0;
+}

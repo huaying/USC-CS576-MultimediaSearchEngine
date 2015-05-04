@@ -63,6 +63,13 @@ public class FinalPJOffline {
                 audioResult += String.valueOf(item)+",";
             }
             dbProcessor.storeAudioFeature(Constant.CATEGORY[k], audioResult);
+
+            /* motion feature extract */
+            Motion motion = new Motion();
+            String filepath = Constant.DB_DIR_PATH + Constant.CATEGORY[k];
+            motion.offline2(filepath);
+
+
             System.out.println("finish_offline: " + Constant.CATEGORY[k]);
         }
         dbProcessor.closeConnection();
