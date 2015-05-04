@@ -22,7 +22,7 @@ public class Main extends Application {
 
         primaryStage.setTitle("VideoSearch");
 
-        primaryStage.setScene(new Scene(controller, 820, 600));
+        primaryStage.setScene(new Scene(controller, 820, 620));
         primaryStage.setResizable(false);
         primaryStage.show();
 

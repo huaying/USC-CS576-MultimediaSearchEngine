@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import java.lang.*?>
 <?import java.net.*?>
@@ -9,6 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
+<?import javafx.collections.*?>
 
 <fx:root alignment="CENTER" type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
@@ -71,16 +73,35 @@
             <Insets left="36.0" right="37.0" />
          </padding>
       </ScrollBar>
-      <Pane fx:id="chartpane" maxWidth="800.0" minWidth="800.0" prefHeight="200.0" prefWidth="800.0">
+      <Pane fx:id="chartpane" prefHeight="500.0" prefWidth="800.0">
          <children>
-            <AreaChart fx:id="areachart" maxHeight="200.0" maxWidth="750.0" minHeight="200.0" minWidth="750.0" prefHeight="200.0" prefWidth="750.0">
+            <AreaChart id="chart" fx:id="areachart" layoutX="25.0" layoutY="33.0" prefHeight="200.0" prefWidth="750.0">
               <xAxis>
-                <NumberAxis autoRanging="false" label="frame" prefHeight="55.0" side="BOTTOM" tickUnit="25" upperBound="450" />
+                <NumberAxis autoRanging="false" label="Frame" prefHeight="55.0" tickUnit="25" upperBound="450.0">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <tickLabelFont>
+                        <Font size="7.0" />
+                     </tickLabelFont></NumberAxis>
               </xAxis>
               <yAxis>
-                <NumberAxis autoRanging="false" label="similarity" prefWidth="65.0" side="LEFT" tickUnit="20" upperBound="100" />
+                <NumberAxis autoRanging="false" label="similarity" prefWidth="65.0" side="LEFT" tickUnit="20" upperBound="100">
+                     <tickLabelFont>
+                        <Font size="7.0" />
+                     </tickLabelFont></NumberAxis>
               </yAxis>
             </AreaChart>
+            <ComboBox fx:id="analyzer" layoutX="376.0" layoutY="12.0" prefWidth="120.0" promptText="Overall">
+             <items>
+                 <FXCollections fx:factory="observableArrayList">
+                     <String fx:value="Overall" />
+                     <String fx:value="Image" />
+                     <String fx:value="Motion" />
+                     <String fx:value="Audio" />
+                 </FXCollections>
+             </items>
+             </ComboBox>
          </children>
       </Pane>
     </children>

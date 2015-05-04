@@ -142,22 +142,18 @@ public class Player{
 
     private void resetTimer(){
         cur_frame_id = 0;
-        timer = new Timeline(new KeyFrame(Duration.millis(33), new EventHandler<ActionEvent>() {
+        timer = new Timeline(new KeyFrame(Duration.millis(33), event -> {
 
-            @Override
-            public void handle(ActionEvent event) {
+            //Debug.print("frame: " + cur_frame_id,num_frame);
 
-                Debug.print("frame: " + cur_frame_id,num_frame);
-
-                if (cur_frame_id < num_frame) {
-                    imageView.setImage(frames.get(cur_frame_id));
-                    cur_frame_id++;
-                    if(imageView.getId().equals("video_src")){
-                        notifier.notifying(String.valueOf(cur_frame_id));
-                    }
-                } else {
-                    notifier.notifying(imageView.getId());
+            if (cur_frame_id < num_frame) {
+                imageView.setImage(frames.get(cur_frame_id));
+                cur_frame_id++;
+                if(imageView.getId().equals("video_src")){
+                    notifier.notifying(String.valueOf(cur_frame_id));
                 }
+            } else {
+                notifier.notifying(imageView.getId());
             }
         }));
         timer.setCycleCount(Timeline.INDEFINITE);

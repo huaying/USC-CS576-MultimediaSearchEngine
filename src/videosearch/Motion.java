@@ -29,29 +29,12 @@ public class Motion {
         new Motion();
     }
     Motion(){
-
         final long startTime = System.currentTimeMillis();
-        //offline2();
-        online2();
+        offline2();
+        //online2();
+        //test();
         final long endTime = System.currentTimeMillis();
         Debug.print("Total execution time: " + (endTime - startTime));
-
-
-        //String path1 = "../database/musicvideo/musicvideo121.rgb";
-        //String path2 = "../database/musicvideo/musicvideo122.rgb";
-//        String path1 = "../query/first/first001.rgb";
-//        String path2 = "../query/first/first002.rgb";
-//        img1 = RGB.getRGBImage(path1);
-//        img2 = RGB.getRGBImage(path2);
-//        for (int y = 0; y < b_height; y++) {
-//            for (int x = 0; x < b_width; x++) {
-//                //vectors.add(this.computeSAD(x * b_size, y * b_size));
-//                int [] a = this.computeSAD(x * b_size, y * b_size);
-//                Debug.print(x+","+y+": ",a[0],a[1]);
-//            }
-//       }
-
-
     }
     public void online2(){
         DbProcessor dbProcessor = new DbProcessor();
@@ -113,6 +96,64 @@ public class Motion {
 
         dbProcessor.closeConnection();
 
+
+    }
+    public void offline2(){
+// ============= OffLine ===========================
+        DbProcessor dbProcessor = new DbProcessor();
+        dbProcessor.buildConnection();
+        dbProcessor.offLineMotionTableInitialize2();
+        boolean first_img = true;
+
+
+        HashMap<String,BufferedImage> imgmap = new HashMap<>();
+        File dir = new File("../database/musicvideo/");
+        Arrays.asList(dir.listFiles()).parallelStream().forEach(file -> {
+            String filename = file.getName();
+            if (filename.endsWith(".rgb")) {
+                imgmap.put(filename,RGB.getRGBImage(file.getPath()));
+            }
+        });
+        //sort hash_map by key
+        imgs = new ArrayList<>(new TreeMap<String,BufferedImage>(imgmap).values());
+
+//        for (File file : dir.listFiles()) {
+//            String filename = file.getName();
+//            if (filename.endsWith(".rgb")) {
+//                imgs.add(RGB.getRGBImage(file.getPath()));
+//            }
+//        }
+//        for (int i=0 ; i< imgs.size();i++){
+//            Debug.print(i+1,imgs);
+//            Debug.print(i+1,imgs1);
+//        }
+
+        double motion;
+        for(int i=0; i<imgs.size(); i+=sample_size){
+            if(i>0) {
+                img1 = imgs.get(i - 1);
+                img2 = imgs.get(i);
+                motion = 0;
+                double [][] ms = new double[b_height][b_width];
+                IntStream.range(0, b_height).parallel().
+                        forEach(y -> IntStream.range(0, b_width).
+                                forEach(x -> {
+                                    int [] p = this.computeSAD(x*b_size,y*b_size);
+                                    ms[y][x] = distance(p[0],p[1]);
+                                }));
+
+
+                for (int y = 0; y < b_height; y++) {
+                    for (int x = 0; x < b_width; x++) {
+                        motion += ms[y][x];
+                    }
+                }
+                Debug.print("finish: " + i);
+                motions.add(motion);
+            }
+        }
+        dbProcessor.storeMotionFeature2("musicvideo", motions);
+        dbProcessor.closeConnection();
 
     }
     public void online(){
@@ -178,64 +219,6 @@ public class Motion {
 
 
     }
-    public void offline2(){
-// ============= OffLine ===========================
-        DbProcessor dbProcessor = new DbProcessor();
-        dbProcessor.buildConnection();
-        dbProcessor.offLineMotionTableInitialize2();
-        boolean first_img = true;
-
-
-        HashMap<String,BufferedImage> imgmap = new HashMap<>();
-        File dir = new File("../database/musicvideo/");
-        Arrays.asList(dir.listFiles()).parallelStream().forEach(file -> {
-            String filename = file.getName();
-            if (filename.endsWith(".rgb")) {
-                imgmap.put(filename,RGB.getRGBImage(file.getPath()));
-            }
-        });
-        //sort hash_map by key
-        imgs = new ArrayList<>(new TreeMap<String,BufferedImage>(imgmap).values());
-
-//        for (File file : dir.listFiles()) {
-//            String filename = file.getName();
-//            if (filename.endsWith(".rgb")) {
-//                imgs.add(RGB.getRGBImage(file.getPath()));
-//            }
-//        }
-//        for (int i=0 ; i< imgs.size();i++){
-//            Debug.print(i+1,imgs);
-//            Debug.print(i+1,imgs1);
-//        }
-
-        double motion;
-        for(int i=0; i<imgs.size(); i+=sample_size){
-            if(i>0) {
-                img1 = imgs.get(i - 1);
-                img2 = imgs.get(i);
-                motion = 0;
-                double [][] ms = new double[b_height][b_width];
-                IntStream.range(0, b_height).parallel().
-                    forEach(y -> IntStream.range(0, b_width).
-                    forEach(x -> {
-                        int [] p = this.computeSAD(x*b_size,y*b_size);
-                        ms[y][x] = distance(p[0],p[1]);
-                    }));
-
-
-                for (int y = 0; y < b_height; y++) {
-                    for (int x = 0; x < b_width; x++) {
-                        motion += ms[y][x];
-                    }
-                }
-                Debug.print("finish: " + i);
-                motions.add(motion);
-            }
-        }
-        dbProcessor.storeMotionFeature2("musicvideo", motions);
-        dbProcessor.closeConnection();
-
-    }
     public void offline(){
 // ============= OffLine ===========================
         DbProcessor dbProcessor = new DbProcessor();
@@ -275,7 +258,7 @@ public class Motion {
 
     private int[] computeSAD(int x, int y){
 
-        int k = 16;
+        int k = 32;
         int left;
         int right;
         int up;
@@ -367,6 +350,21 @@ public class Motion {
         int g2 =(p2 >> 8 ) & 0xff;
         int b2 = p2 & 0xff;
         return Math.abs(r1-r2) + Math.abs(g1-g2) + Math.abs(b1-b2);
+    }
+    public void test(){
+        //String path1 = "../database/musicvideo/musicvideo121.rgb";
+        //String path2 = "../database/musicvideo/musicvideo122.rgb";
+        String path1 = "../query/first/first001.rgb";
+        String path2 = "../query/first/first002.rgb";
+        img1 = RGB.getRGBImage(path1);
+        img2 = RGB.getRGBImage(path2);
+        for (int y = 0; y < b_height; y++) {
+            for (int x = 0; x < b_width; x++) {
+                //vectors.add(this.computeSAD(x * b_size, y * b_size));
+                int [] a = this.computeSAD(x * b_size, y * b_size);
+                Debug.print(x+","+y+": ",a[0],a[1]);
+            }
+        }
     }
 
 }
