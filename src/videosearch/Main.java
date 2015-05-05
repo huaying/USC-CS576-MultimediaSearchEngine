@@ -16,6 +16,7 @@ public class Main extends Application {
 
 
         final long startTime = System.currentTimeMillis();
+//        FinalPJOnline.runOffline();
         Controller controller = new Controller();
         final long endTime = System.currentTimeMillis();
         Debug.print("Total execution time: " + (endTime - startTime));

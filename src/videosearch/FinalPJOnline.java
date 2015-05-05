@@ -19,9 +19,11 @@ public class FinalPJOnline {
     private static int[] surfpercent_table = {0, 1, 35, 55, 80, 90, 100};
     private static int[] audiotable = {0, 550, 1200, 2300, 2800, 4000};
     private static int[] audiopercent_table = {0, 1, 50, 80, 90, 100};
+    private static int[] colorhisttable = {0, 100, 1000, 5000, 20000, 40000, 80000, 120000};
+    private static int[] colorhistpercent_table = {0, 1, 10, 30, 60, 80, 90, 100};
 
 
-    public static void main(String args[]){
+    public static void runOffline(){
 
         List<String> imageFiles = new ArrayList<String>();
         File dir = new File(Constant.Query_DIR_PATH);
@@ -96,6 +98,7 @@ public class FinalPJOnline {
                 double diffContrast = 0;
                 double diffSurf = 0;
                 double diffAudio = 0;
+                double diffColorHist = 0;
                 //loop for corresponding frame
                 for (int j = 0; j < queryTextFeatureList.size(); j++) {
 
@@ -112,7 +115,7 @@ public class FinalPJOnline {
                     //deal with color histogram comparison
                     List<Integer> dbColorHist = dbTextFeatureList.get(j + i).getColorHistogram();
                     List<Integer> queryColorHist = queryTextFeatureList.get(j).getColorHistogram();
-//                    double errorColorHist = getColorHistError(dbColorHist, queryColorHist);
+                    diffColorHist += getColorHistError(dbColorHist, queryColorHist);
 
                     //deal with audio comparison
                     double dbAudio = Double.parseDouble(dbAudioFeatureList.get(j + i));
@@ -150,10 +153,11 @@ public class FinalPJOnline {
                 double windowContrastSimilarity = calculateProbability(contrasttable, contrastpercent_table, diffContrast);
                 double windowSurfSimilarity = calculateProbability(surftable, surfpercent_table, diffSurf);
                 double windowAudioSimilarity = calculateProbability(audiotable, audiopercent_table, diffAudio);
-                windowSimilarity = (windowContrastSimilarity + windowMotionSimilarity + windowAudioSimilarity +windowSurfSimilarity)/4;
+                double windowColorHistSimilarity = calculateProbability(colorhisttable, colorhistpercent_table, diffColorHist);
+                windowSimilarity = (2*windowColorHistSimilarity + windowContrastSimilarity + windowMotionSimilarity + windowAudioSimilarity +2*windowSurfSimilarity)/7;
                 dbProcessor.storeWindowResult(i + 1, Constant.CATEGORY[k], windowSimilarity);
                 dbProcessor.storeWindowResultAudio(i + 1, Constant.CATEGORY[k], windowAudioSimilarity);
-                dbProcessor.storeWindowResultImage(i + 1, Constant.CATEGORY[k], (windowContrastSimilarity+windowSurfSimilarity)/2);
+                dbProcessor.storeWindowResultImage(i + 1, Constant.CATEGORY[k], (windowContrastSimilarity + windowSurfSimilarity + windowColorHistSimilarity) / 3);
                 dbProcessor.storeWindowResultMotion(i + 1, Constant.CATEGORY[k], windowMotionSimilarity);
                 categorySimilarity += windowSimilarity;
             }
@@ -179,21 +183,13 @@ public class FinalPJOnline {
     }
 
     public static double getColorHistError(List<Integer> dbColorHist, List<Integer> queryColorHist){
-        double result = 0.0;
-        for(int i=0; i<queryColorHist.size(); i++){
-            double diff = (double)Math.abs(dbColorHist.get(i) - queryColorHist.get(i));
-            double fenmu = dbColorHist.get(i);
-            if(fenmu == 0){
-                fenmu = 1;
-            }
-            double error = diff/(double)fenmu;
-            if(error > 1.0){
-                error = 1;
-            }
-            result += error;
+        int[] dbhist = new int[64];
+        int[] queryhist = new int[64];
+        for(int i=0; i<dbColorHist.size(); i++){
+            dbhist[i] = dbColorHist.get(i);
+            queryhist[i] = queryColorHist.get(i);
         }
-        result = result/64;
-        return result;
+        return MetricsUtils.jsd(dbhist, queryhist);
     }
 
     public static double calculateProbability(int[] mtable, int[] mpercent_table, double v){
