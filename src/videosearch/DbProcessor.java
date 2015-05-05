@@ -65,7 +65,7 @@ public class DbProcessor {
             String deleteImageTableSql = "DROP TABLE IF EXISTS TEXTFEATURE_"+category+"";
             stmt.executeUpdate(deleteImageTableSql);
             String buildTextFeatureTable = "CREATE TABLE IF NOT EXISTS TEXTFEATURE_"+category+"" +
-                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), H1 DOUBLE, H2 DOUBLE, SURF INT)";
+                    "(ID INT PRIMARY KEY auto_increment, INDEX VARCHAR(255), CONTRAST DOUBLE, SURF INT, COLORHISTOGRAM VARCHAR(255))";
             stmt.executeUpdate(buildTextFeatureTable);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -80,16 +80,35 @@ public class DbProcessor {
             String clearWindowResult = "DELETE FROM WINDOWRESULT";
             stmt.executeUpdate(clearWindowResult);
 
+            //create windowresult table
+            String buildWindowAudioResult = "CREATE TABLE IF NOT EXISTS WINDOWRESULTAUDIO(WINDOWINDEX VARCHAR(255), CATEGORY VARCHAR(255), SIMILARITY DOUBLE)";
+            stmt.executeUpdate(buildWindowAudioResult);
+            String clearWindowAudioResult = "DELETE FROM WINDOWRESULTAUDIO";
+            stmt.executeUpdate(clearWindowAudioResult);
+
+            //create windowresult table
+            String buildWindowMotionResult = "CREATE TABLE IF NOT EXISTS WINDOWRESULTMOTION(WINDOWINDEX VARCHAR(255), CATEGORY VARCHAR(255), SIMILARITY DOUBLE)";
+            stmt.executeUpdate(buildWindowMotionResult);
+            String clearWindowMotionResult = "DELETE FROM WINDOWRESULTMOTION";
+            stmt.executeUpdate(clearWindowMotionResult);
+
+            //create windowresult table
+            String buildWindowImageResult = "CREATE TABLE IF NOT EXISTS WINDOWRESULTIMAGE(WINDOWINDEX VARCHAR(255), CATEGORY VARCHAR(255), SIMILARITY DOUBLE)";
+            stmt.executeUpdate(buildWindowImageResult);
+            String clearWindowImageResult = "DELETE FROM WINDOWRESULTIMAGE";
+            stmt.executeUpdate(clearWindowImageResult);
+
             //create fileresult table
             String buildFileResult = "CREATE TABLE IF NOT EXISTS CATEGORYRESULT(CATEGORY VARCHAR(255), SIMILARITY DOUBLE)";
             stmt.executeUpdate(buildFileResult);
             String clearFileResult = "DELETE FROM CATEGORYRESULT";
             stmt.executeUpdate(clearFileResult);
 
+
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
     }
 
     public void storeAudioFeature(String category, String audioFeature){
@@ -100,6 +119,7 @@ public class DbProcessor {
             e.printStackTrace();
         }
     }
+
 
     public void storeMotionFeature(String category, int frameid, ArrayList<int []> vector){
         try {
@@ -137,10 +157,35 @@ public class DbProcessor {
         }
     }
 
-    public void storeTextFeature(String imagename, String category, double[] histogram, int surf)  {
+    public void storeWindowResultImage(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTIMAGE VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void storeWindowResultMotion(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTMOTION VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void storeWindowResultAudio(int windowIndex, String category, double windowSimilarity){
+        try {
+            String storeWindowSql = "INSERT INTO WINDOWRESULTAUDIO VALUES("+windowIndex+", '"+category+"', "+windowSimilarity+")";
+            stmt.executeUpdate(storeWindowSql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void storeTextFeature(String imagename, String category, double contrast, int surf, String colorHistogramResult)  {
 
         try {
-            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+histogram[0]+", "+histogram[1]+", "+surf+")";
+            String sql = "INSERT INTO TEXTFEATURE_"+category+" VALUES(NULL ,  '"+imagename+"', "+contrast+", "+surf+", '"+colorHistogramResult+"')";
             stmt.executeUpdate(sql);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -278,9 +323,15 @@ public class DbProcessor {
             while(rs.next()){
                 TextFeature tf = new TextFeature();
                 tf.setImageName(rs.getString("INDEX"));
-                tf.setH1(rs.getDouble("H1"));
-                tf.setH2(rs.getDouble("H2"));
+                tf.setContrast(rs.getDouble("CONTRAST"));
                 tf.setSurf(rs.getInt("SURF"));
+                String colorHistogram = rs.getString("COLORHISTOGRAM");
+                List<String> temp = Arrays.asList(colorHistogram.split(","));
+                List<Integer> colorHistogramResult = new ArrayList<Integer>();
+                for(String item: temp){
+                    colorHistogramResult.add(Integer.parseInt(item));
+                }
+                tf.setColorHistogram(colorHistogramResult);
                 textFeatureList.add(tf);
             }
         } catch (SQLException e) {
@@ -343,6 +394,53 @@ public class DbProcessor {
         return audioResult;
 
     }
+
+    public Map<Integer, Double> getWindowResultImage(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTIMAGE WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+    public Map<Integer, Double> getWindowResultMotion(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTMOTION WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+    public Map<Integer, Double> getWindowResultAudio(String category){
+        Map<Integer, Double> windowHashMap = new HashMap<Integer,Double>();
+        try {
+            String getWindowResultSql = "SELECT WINDOWINDEX, SIMILARITY FROM WINDOWRESULTAUDIO WHERE CATEGORY='"+category+"'";
+            ResultSet rs = stmt.executeQuery(getWindowResultSql);
+            while(rs.next()){
+                int index = rs.getInt("WINDOWINDEX");
+                double similarity = rs.getDouble("SIMILARITY");
+                windowHashMap.put(index, similarity);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return windowHashMap;
+    }
+
 
     public void closeConnection(){
         try {
