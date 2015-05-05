@@ -93,11 +93,8 @@ public class Motion {
 
 
     }
-    public void offline2(String filepath){
+    public ArrayList<Double> offline2(String filepath){
 // ============= OffLine ===========================
-        DbProcessor dbProcessor = new DbProcessor();
-        dbProcessor.buildConnection();
-        dbProcessor.offLineMotionTableInitialize2();
         boolean first_img = true;
 
 
@@ -143,12 +140,11 @@ public class Motion {
                         motion += ms[y][x];
                     }
                 }
-                Debug.print("finish: " + i);
+//                Debug.print("finish: " + i);
                 motions.add(motion);
             }
         }
-        dbProcessor.storeMotionFeature2("musicvideo", motions);
-        dbProcessor.closeConnection();
+        return motions;
 
     }
     public void online(){

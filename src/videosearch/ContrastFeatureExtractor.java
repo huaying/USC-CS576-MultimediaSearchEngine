@@ -11,8 +11,7 @@ import java.awt.image.Raster;
  */
 public class ContrastFeatureExtractor {
     private static final int MAX_IMG_HEIGHT = 64;
-    private double[] histogram; // stores all three tamura features in one histogram.
-    private int[][] grayScales; //store greyScale of piexls
+    private int[][] grayScales;
     private int imgWidth, imgHeight;
 
     public double extract(BufferedImage image) {
@@ -50,7 +49,6 @@ public class ContrastFeatureExtractor {
             }
         }
         alpha4 = my4 / (Math.pow(sigma, 4));
-        // fixed based on the patches of shen72@users.sourceforge.net
         result = sigma / (Math.pow(alpha4, 0.25));
         return result;
     }

@@ -40,9 +40,10 @@ public class Controller extends VBox implements Notifier{
     private Player player_clip;
 
     List<CategoryResult> categoryResults;
-    Map<String,HashMap>windowResults;
+    Map<String,HashMap> [] windowResults = new Map[4];
     List<String> paths;
     Line chartpointer;
+    String cur_category;
 
     final int POINTER_START = 105;
     final int POINTER_END = 760;
@@ -54,7 +55,7 @@ public class Controller extends VBox implements Notifier{
     public Controller() throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(
-            "VideoSearch.fxml"
+                "VideoSearch.fxml"
         ));
 
         fxmlLoader.setRoot(this);
@@ -107,7 +108,8 @@ public class Controller extends VBox implements Notifier{
 
 
     private void setAnalyser(String category){
-        setAnalyser(category,0);
+        setAnalyser(category, 0);
+        analyzer.setValue("Overall");
     }
     private void setAnalyser(String category,int analyze_mode){
 
@@ -115,7 +117,10 @@ public class Controller extends VBox implements Notifier{
         areachart.setCreateSymbols(false);
         XYChart.Series series = new XYChart.Series();
         XYChart.Series series3 = new XYChart.Series();
-        Map<Integer,Double> map = windowResults.get(category);
+
+
+
+        Map<Integer,Double> map = windowResults[analyze_mode].get(category);
         for (Map.Entry<Integer,Double>entry : map.entrySet() ){
             Integer x = entry.getKey();
             Integer y = Double.valueOf(entry.getValue() * 100).intValue();
@@ -129,7 +134,7 @@ public class Controller extends VBox implements Notifier{
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
                 int id = analyzer.getSelectionModel().getSelectedIndex();
-                Debug.print(id);
+                setAnalyser(cur_category,id);
             }
         });
 
@@ -140,12 +145,17 @@ public class Controller extends VBox implements Notifier{
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
 
-        windowResults = new HashMap<String, HashMap>();
+        for (int i=0;i < 4 ; i++) {
+            windowResults[i] = new HashMap<String, HashMap>();
+        }
         categoryResults = dbProcessor.getCategoryResult();
+        cur_category = categoryResults.get(0).getCategory();
         for(CategoryResult cate : categoryResults){
             String cate_name = cate.getCategory();
-            windowResults.put(cate_name, (HashMap<Integer,Double>) dbProcessor.getWindowResult(cate_name));
-            //Debug.print(windowResults.get(cate_name).toString());
+            windowResults[0].put(cate_name, (HashMap<Integer, Double>) dbProcessor.getWindowResult(cate_name));
+            windowResults[1].put(cate_name, (HashMap<Integer, Double>) dbProcessor.getWindowResultImage(cate_name));
+            windowResults[2].put(cate_name, (HashMap<Integer,Double>) dbProcessor.getWindowResultMotion(cate_name));
+            windowResults[3].put(cate_name, (HashMap<Integer, Double>) dbProcessor.getWindowResultAudio(cate_name));
         }
 
         dbProcessor.closeConnection();
@@ -153,7 +163,7 @@ public class Controller extends VBox implements Notifier{
     }
     private void setQueryVideo() throws IOException {
         player_clip = new Player(video_clip,this);
-        player_clip.load("../query/first/");
+        player_clip.load(Constant.Query_DIR_PATH);
 
     }
     private void setMatchVideo() throws IOException {
@@ -165,8 +175,7 @@ public class Controller extends VBox implements Notifier{
 //        for(CategoryResult cate : categoryResults){
 //            //String path = "../databasejpg/" + cate.getCategory();
 //            String path = "../database/" + cate.getCategory();
-//            paths.add(path);
-//            player_src.preload(path);
+//            preloads.put(path, player_src.preload(path));
 //        }
         categoryResults.parallelStream().forEach((cate) -> {
             try {
@@ -211,7 +220,8 @@ public class Controller extends VBox implements Notifier{
                 try {
                     stopSrc();
                     player_src.load(paths.get(id));
-                    setAnalyser(categoryResults.get(id).getCategory());
+                    cur_category = categoryResults.get(id).getCategory();
+                    setAnalyser(cur_category);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

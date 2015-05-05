@@ -17,6 +17,7 @@ public class FinalPJOffline {
         DbProcessor dbProcessor = new DbProcessor();
         dbProcessor.buildConnection();
         dbProcessor.offLineAudioTableInitialize();
+        dbProcessor.offLineMotionTableInitialize2();
 
         for(int k=0; k<Constant.CATEGORY.length; k++) {
             File dir = new File(Constant.DB_DIR_PATH + Constant.CATEGORY[k] + "/");
@@ -67,7 +68,7 @@ public class FinalPJOffline {
             /* motion feature extract */
             Motion motion = new Motion();
             String filepath = Constant.DB_DIR_PATH + Constant.CATEGORY[k];
-            motion.offline2(filepath);
+            dbProcessor.storeMotionFeature2(Constant.CATEGORY[k], motion.offline2(filepath));
 
 
             System.out.println("finish_offline: " + Constant.CATEGORY[k]);
