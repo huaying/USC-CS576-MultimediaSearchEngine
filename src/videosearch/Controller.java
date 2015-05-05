@@ -172,19 +172,20 @@ public class Controller extends VBox implements Notifier{
         Map<String,PlayerPreLoad> preloads= new HashMap<String,PlayerPreLoad>();
 
         paths = new ArrayList<String>();
-//        for(CategoryResult cate : categoryResults){
-//            //String path = "../databasejpg/" + cate.getCategory();
-//            String path = "../database/" + cate.getCategory();
-//            preloads.put(path, player_src.preload(path));
-//        }
-        categoryResults.parallelStream().forEach((cate) -> {
-            try {
-                String path = "../database/" + cate.getCategory();
-                preloads.put(path, player_src.preload(path));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
+        for(CategoryResult cate : categoryResults){
+            //String path = "../databasejpg/" + cate.getCategory();
+            String path = "../database/" + cate.getCategory();
+            preloads.put(path, player_src.preload(path));
+        }
+//        categoryResults.parallelStream().forEach((cate) -> {
+//            try {
+//                String path = "../database/" + cate.getCategory();
+//                preloads.put(path, player_src.preload(path));
+//                Debug.print(path);
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
         for(CategoryResult cate : categoryResults){
             String path = "../database/" + cate.getCategory();
             paths.add(path);
