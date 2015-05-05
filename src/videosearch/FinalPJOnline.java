@@ -159,7 +159,7 @@ public class FinalPJOnline {
                 dbProcessor.storeWindowResultAudio(i + 1, Constant.CATEGORY[k], windowAudioSimilarity);
                 dbProcessor.storeWindowResultImage(i + 1, Constant.CATEGORY[k], (windowContrastSimilarity + windowSurfSimilarity + windowColorHistSimilarity) / 3);
                 dbProcessor.storeWindowResultMotion(i + 1, Constant.CATEGORY[k], windowMotionSimilarity);
-                categorySimilarity += windowSimilarity;
+                categorySimilarity += windowSimilarity*windowSimilarity;
             }
             categorySimilarity = categorySimilarity/loopSizePerFile;
             CategoryResult categoryResult = new CategoryResult();
