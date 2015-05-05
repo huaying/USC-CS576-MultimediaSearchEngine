@@ -56,12 +56,12 @@ public class Player{
         File dir = new File(path);
         List<Image>frames = new ArrayList<Image>();
         ArrayList<BufferedImage> imgs;
+        MediaPlayer mp = null;
 
         for (File file : dir.listFiles()) {
             String filename = file.getName();
             if (filename.endsWith(".wav")){
-                mediaPlayer = new MediaPlayer(new Media(new File(file.getPath()).toURI().toString()));
-                Debug.print(file.getPath());
+                mp = new MediaPlayer(new Media(new File(file.getPath()).toURI().toString()));
             }
             if (filename.endsWith(".rgb")) {
                 frames.add(SwingFXUtils.toFXImage(RGB.getRGBImage(
@@ -75,9 +75,10 @@ public class Player{
             }
 
         }
-        return new PlayerPreLoad(frames, mediaPlayer);
+        return new PlayerPreLoad(frames, mp);
     }
     protected void putPreload(String path,PlayerPreLoad pp){
+
         movies.put(path,pp.frames);
         movies_music.put(path, pp.mediaPlayer);
     }

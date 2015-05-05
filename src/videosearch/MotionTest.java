@@ -1,7 +1,5 @@
 package videosearch;
 
-import javafx.embed.swing.SwingFXUtils;
-
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.*;
@@ -11,7 +9,7 @@ import java.util.stream.IntStream;
 /**
  * Created by huayingt on 5/2/15.
  */
-public class Motion {
+public class MotionTest {
 
     BufferedImage img1;
     BufferedImage img2;
@@ -26,10 +24,10 @@ public class Motion {
     ArrayList<Double> motions = new ArrayList<Double>();
 
     static public void main(String argv[]){
-        //new Motion().offline2();
-        new Motion().online2();
+        //new MotionTest().offline2();
+        new MotionTest().online2();
     }
-    Motion(){
+    MotionTest(){
         //final long startTime = System.currentTimeMillis();
         //offline2();
         //online2();
